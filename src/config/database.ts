@@ -1,5 +1,6 @@
-import { Sequelize } from "sequelize";
+import { Sequelize } from "sequelize-typescript";
 import * as dotenv from "dotenv";
+import { Hackerspace } from "../model/Hackerspace";
 dotenv.config();
 
 class Database {
@@ -9,7 +10,7 @@ class Database {
   private POSTGRES_HOST = process.env.HOST as string;
   private POSTGRES_PORT = process.env.PORT as unknown as number;
   private POSTGRES_USER = process.env.USER as string;
-  private POSTGRES_PASSWORD = process.env.PASSWORD as string;
+  private POSTGRES_PASSWORD = process.env.PASSWORD as unknown as string;
 
   constructor() {
     this.connectToPostgreSQL();
@@ -23,6 +24,7 @@ class Database {
       username: this.POSTGRES_USER,
       password: this.POSTGRES_PASSWORD,
       dialect: "postgres",
+      models: [Hackerspace],
     });
 
     await this.sequelize
