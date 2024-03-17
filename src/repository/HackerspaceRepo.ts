@@ -19,16 +19,63 @@ export class HackerspaceRepo implements IHackerspaceRepo {
       throw new Error("Failed to create hackerspace!");
     }
   }
-  update(hackerspace: Hackerspace): Promise<void> {
-    throw new Error("Method not implemented.");
+
+  async update(hackerspace: Hackerspace): Promise<void> {
+    try {
+      const hspace = await Hackerspace.findOne({
+        where: {
+          id: hackerspace.id,
+        },
+      });
+      if (!hspace) {
+        throw new Error("Hackerspace not found!");
+      }
+      hspace.name = hackerspace.name;
+      hspace.city = hackerspace.city;
+
+      await hspace.save();
+    } catch (error) {
+      throw new Error("Failed to update hackerspace!");
+    }
   }
-  delete(hackerspaceId: number): Promise<void> {
-    throw new Error("Method not implemented.");
+
+  async delete(hackerspaceId: number): Promise<void> {
+    try {
+      const hspace = await Hackerspace.findOne({
+        where: {
+          id: hackerspaceId,
+        },
+      });
+      if (!hspace) {
+        throw new Error("Hackerspace not found!");
+      }
+      await hspace.destroy();
+    } catch (error) {
+      throw new Error("Failed to delete hackerspace!");
+    }
   }
-  retrieveById(hackerspaceId: number): Promise<Hackerspace> {
-    throw new Error("Method not implemented.");
+
+  async retrieveById(hackerspaceId: number): Promise<Hackerspace> {
+    try {
+      const hspace = await Hackerspace.findOne({
+        where: {
+          id: hackerspaceId,
+        },
+      });
+      if (!hspace) {
+        throw new Error("Hackerspace not found!");
+      }
+      return hspace;
+    } catch (error) {
+      throw new Error("Failed to retrieve hackerspace by id!");
+    }
   }
-  retrieveAll(): Promise<Hackerspace[]> {
-    throw new Error("Method not implemented.");
+
+  async retrieveAll(): Promise<Hackerspace[]> {
+    try {
+      return await Hackerspace.findAll();
+    } catch (error) {
+      throw new Error("Failed to retrieve all hackerspaces!");
+    }
   }
 }
