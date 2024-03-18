@@ -8,9 +8,7 @@ abstract class BaseRoutes implements IRouter {
     this.routes();
   }
 
-  routes(): void {
-    throw new Error("Method not implemented.");
-  }
+  abstract routes(): void;
 }
 
 export default BaseRoutes;

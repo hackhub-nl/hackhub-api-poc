@@ -1,5 +1,6 @@
 import express, { Application, Request, Response } from "express";
 import Database from "./config/database";
+import HackerspaceRouter from "./router/HackerspaceRouter";
 
 class App {
   public app: Application;
@@ -8,6 +9,11 @@ class App {
     this.app = express();
     this.databaseSync();
     this.routes();
+  }
+
+  protected plugin(): void {
+    this.app.use(express.json());
+    this.app.use(express.urlencoded({ extended: true }));
   }
 
   protected databaseSync(): void {
@@ -19,6 +25,7 @@ class App {
     this.app.route("/").get((req: Request, res: Response) => {
       res.send("Home route");
     });
+    this.app.use("/api/v1/hackerspace", HackerspaceRouter);
   }
 }
 
