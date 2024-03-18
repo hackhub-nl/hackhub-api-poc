@@ -97,3 +97,5 @@ class HackerspaceController {
     }
   }
 }
+
+export default new HackerspaceController();
