@@ -27,5 +27,5 @@ export class Event extends Model {
     type: DataType.STRING(500),
     field: Event.EVENT_DESCRIPTION,
   })
-  city!: string;
+  description!: string;
 }
