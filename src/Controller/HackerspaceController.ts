@@ -11,7 +11,7 @@ class HackerspaceController {
 
       await new HackerspaceRepo().save(hspace);
 
-      res.status(200).json({
+      res.status(201).json({
         status: "Created!",
         message: "Successfully created hackerspace!",
       });

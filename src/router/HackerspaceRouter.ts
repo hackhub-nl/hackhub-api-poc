@@ -1,6 +1,9 @@
 import BaseRoutes from "./base/BaseRouter";
 import HackerspaceController from "../Controller/HackerspaceController";
-import { createHackerspaceSchema } from "../schema/HackerspaceSchema";
+import {
+  createHackerspaceSchema,
+  updateHackerspaceSchema,
+} from "../schema/HackerspaceSchema";
 import validate from "../helper/validate";
 
 class HackerspaceRoutes extends BaseRoutes {
@@ -12,7 +15,7 @@ class HackerspaceRoutes extends BaseRoutes {
     );
     this.router.patch(
       "/:id",
-      validate(createHackerspaceSchema),
+      validate(updateHackerspaceSchema),
       HackerspaceController.update
     );
     this.router.delete("/:id", HackerspaceController.delete);
