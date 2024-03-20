@@ -27,8 +27,8 @@ class App {
     this.app.route("/").get((req: Request, res: Response) => {
       res.send("Home route");
     });
-    this.app.use("/api/v1/hackerspace", HackerspaceRouter);
-    this.app.use("/api/v1/event", EventRouter);
+    this.app.use("/api/v1/hackerspaces", HackerspaceRouter);
+    this.app.use("/api/v1/events", EventRouter);
   }
 }
 
