@@ -1,6 +1,7 @@
 import express, { Application, Request, Response } from "express";
 import Database from "./config/database";
 import HackerspaceRouter from "./router/HackerspaceRouter";
+import EventRouter from "./router/EventRouter";
 
 class App {
   public app: Application;
@@ -27,6 +28,7 @@ class App {
       res.send("Home route");
     });
     this.app.use("/api/v1/hackerspace", HackerspaceRouter);
+    this.app.use("/api/v1/event", EventRouter);
   }
 }
 
