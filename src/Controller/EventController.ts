@@ -83,6 +83,7 @@ class EventController {
       evt.id = id;
       evt.name = req.body.name;
       evt.description = req.body.description;
+      evt.hackerspaceId = req.body.hackerspaceId;
 
       await new EventRepo().update(evt);
 

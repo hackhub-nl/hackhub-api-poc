@@ -32,6 +32,7 @@ export class EventRepo implements IEventRepo {
       }
       evt.name = event.name;
       evt.description = event.description;
+      evt.hackerspaceId = event.hackerspaceId;
 
       await evt.save();
     } catch (error) {
