@@ -14,6 +14,7 @@ export class EventRepo implements IEventRepo {
       await Event.create({
         name: event.name,
         description: event.description,
+        hackerspaceId: event.hackerspaceId,
       });
     } catch (error) {
       throw new Error("Failed to create new event!");

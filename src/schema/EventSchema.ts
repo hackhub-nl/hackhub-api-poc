@@ -8,6 +8,7 @@ export const createEventSchema = z.object({
     description: z.string().min(1, {
       message: "Description must contain at least two characters!",
     }),
+    hackerspaceId: z.number(),
   }),
 });
 

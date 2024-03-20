@@ -1,4 +1,5 @@
-import { Model, Table, Column, DataType } from "sequelize-typescript";
+import { Model, Table, Column, DataType, HasMany } from "sequelize-typescript";
+import { Event } from "./Event";
 
 @Table({
   tableName: Hackerspace.HACKERSPACE_TABLE_NAME,
@@ -28,4 +29,7 @@ export class Hackerspace extends Model {
     field: Hackerspace.HACKERSPACE_CITY,
   })
   city!: string;
+
+  @HasMany(() => Event, "hackerspaceId")
+  events!: Event[];
 }

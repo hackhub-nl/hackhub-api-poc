@@ -8,6 +8,7 @@ class EventController {
       const evt = new Event();
       evt.name = req.body.name;
       evt.description = req.body.description;
+      evt.hackerspaceId = req.body.hackerspaceId;
 
       await new EventRepo().save(evt);
 

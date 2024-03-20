@@ -1,4 +1,12 @@
-import { Model, Table, Column, DataType } from "sequelize-typescript";
+import {
+  Model,
+  Table,
+  Column,
+  DataType,
+  ForeignKey,
+  BelongsTo,
+} from "sequelize-typescript";
+import { Hackerspace } from "./Hackerspace";
 
 @Table({
   tableName: Event.EVENT_TABLE_NAME,
@@ -28,4 +36,13 @@ export class Event extends Model {
     field: Event.EVENT_DESCRIPTION,
   })
   description!: string;
+
+  @ForeignKey(() => Hackerspace)
+  @Column({
+    type: DataType.INTEGER,
+  })
+  hackerspaceId!: number;
+
+  @BelongsTo(() => Hackerspace)
+  hackerspace!: Hackerspace;
 }
