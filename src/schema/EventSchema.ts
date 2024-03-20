@@ -11,7 +11,7 @@ export const createEventSchema = z.object({
   }),
 });
 
-export const updateHackerspaceSchema = z.object({
+export const updateEventSchema = z.object({
   params: z.object({ id: z.string() }),
   body: z
     .object({

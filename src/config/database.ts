@@ -1,6 +1,7 @@
 import { Sequelize } from "sequelize-typescript";
 import * as dotenv from "dotenv";
 import { Hackerspace } from "../model/Hackerspace";
+import { Event } from "../model/Event";
 dotenv.config();
 
 class Database {
@@ -24,7 +25,7 @@ class Database {
       username: this.POSTGRES_USER,
       password: this.POSTGRES_PASSWORD,
       dialect: "postgres",
-      models: [Hackerspace],
+      models: [Hackerspace, Event],
     });
 
     await this.sequelize
