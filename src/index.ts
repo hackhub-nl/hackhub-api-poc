@@ -2,9 +2,11 @@ import express, { Application, Request, Response } from "express";
 import Database from "./config/database";
 import HackerspaceRouter from "./router/HackerspaceRouter";
 import EventRouter from "./router/EventRouter";
+import cors from "cors";
 
 class App {
   public app: Application;
+  private CLIENT_URL = process.env.CLIENT_URL as string;
 
   constructor() {
     this.app = express();
@@ -14,6 +16,12 @@ class App {
   }
 
   protected plugins(): void {
+    this.app.use(
+      cors({
+        origin: this.CLIENT_URL,
+        credentials: true,
+      })
+    );
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));
   }
