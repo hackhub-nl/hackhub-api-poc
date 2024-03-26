@@ -1,5 +1,5 @@
 import BaseRoutes from "./base/BaseRouter";
-import HackerspaceController from "../Controller/HackerspaceController";
+import HackerspaceController from "../controller/HackerspaceController";
 import {
   createHackerspaceSchema,
   updateHackerspaceSchema,

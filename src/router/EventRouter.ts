@@ -1,5 +1,5 @@
 import BaseRoutes from "./base/BaseRouter";
-import EventController from "../Controller/EventController";
+import EventController from "../controller/EventController";
 import validate from "../helper/validate";
 import { createEventSchema, updateEventSchema } from "../schema/EventSchema";
 
