@@ -8,7 +8,7 @@
   "scripts": {
     "build": "tsc",
     "dev": "nodemon ./build/index.js",
-    "start-dev": "tsc && yarn dev"
+    "start-dev": "tsc && npm run dev"
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",

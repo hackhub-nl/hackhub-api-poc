@@ -1,9 +1,15 @@
 # hackerspaces-api-demo 
-
-### Install all dependencies:  
-```yarn install```  
-### Start the server: 
-```yarn start-dev```   
+### Instructions:
+- Install all dependencies: ```npm install``` 
+- Create ```.env``` file in your root folder and set following values:    
+```POSTGRES_HOST```=...    
+```POSTGRES_PORT```=...    
+```POSTGRES_USER```=...    
+```POSTGRES_PASSWORD```=...   
+```POSTGRES_DB```=...   
+```CLIENT_URL```=...   
+- Start the server: ```npm run start-dev```
+  
 ### API Endpoints:
 - Hackerspaces:
     - **GET** ```api/v1/hackerspaces``` Get all hackerspaces      
