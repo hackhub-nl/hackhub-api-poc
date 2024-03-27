@@ -2,7 +2,7 @@
     
 ### Instructions:
 - Install all dependencies: ```npm install``` 
-- Create ```.env``` file in your root directory of the project and set following values:    
+- Create ```.env``` file in the root directory of the project and set following values:    
      
     ```POSTGRES_HOST```=...    
     ```POSTGRES_PORT```=...    
