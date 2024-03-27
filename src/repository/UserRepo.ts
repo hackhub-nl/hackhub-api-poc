@@ -4,28 +4,104 @@ interface IUserRepo {
   save(user: User): Promise<void>;
   update(user: User): Promise<void>;
   delete(userId: number): Promise<void>;
-  getById(userId: number): Promise<void>;
-  getAll(): Promise<void>;
+  getById(userId: number): Promise<User>;
+  getAll(): Promise<User[]>;
   findByEmail(email: string): Promise<User>;
 }
 
 export class UserRepo implements IUserRepo {
-    save(user: User): Promise<void> {
-        throw new Error("Method not implemented.");
+  async save(user: User): Promise<void> {
+    try {
+      await User.create({
+        name: user.name,
+        username: user.username,
+        password: user.password,
+        email: user.email,
+      });
+    } catch (error) {
+      throw new Error("Failed to create user!");
     }
-    update(user: User): Promise<void> {
-        throw new Error("Method not implemented.");
+  }
+
+  async update(user: User): Promise<void> {
+    try {
+      const usr = await User.findOne({
+        where: {
+          id: user.id,
+        },
+      });
+
+      if (!usr) {
+        throw new Error("User not found!");
+      }
+      usr.name = user.name;
+      usr.username = user.username;
+      usr.password = user.password;
+      usr.email = user.email;
+
+      await usr.save();
+    } catch (error) {
+      throw new Error("Failed to update user!");
     }
-    delete(userId: number): Promise<void> {
-        throw new Error("Method not implemented.");
+  }
+
+  async delete(userId: number): Promise<void> {
+    try {
+      const usr = await User.findOne({
+        where: {
+          id: userId,
+        },
+      });
+
+      if (!usr) {
+        throw new Error("User not found!");
+      }
+      await usr.destroy();
+    } catch (error) {
+      throw new Error("Failed to delete user!");
     }
-    getById(userId: number): Promise<void> {
-        throw new Error("Method not implemented.");
+  }
+
+  async getById(userId: number): Promise<User> {
+    try {
+      const usr = await User.findOne({
+        where: {
+          id: userId,
+        },
+      });
+
+      if (!usr) {
+        throw new Error("User not found!");
+      }
+      return usr;
+    } catch (error) {
+      throw new Error("Failed to get user by id!");
     }
-    getAll(): Promise<void> {
-        throw new Error("Method not implemented.");
+  }
+
+  async getAll(): Promise<User[]> {
+    try {
+      return await User.findAll();
+    } catch (error) {
+      throw new Error("Failed to get all users!");
     }
-    findByEmail(email: string): Promise<User> {
-        throw new Error("Method not implemented.");
+  }
+
+  async findByEmail(email: string): Promise<User> {
+    try {
+      const usr = await User.findOne({
+        where: {
+          email: email,
+        },
+      });
+
+      if (!usr) {
+        throw new Error("User not found!");
+      }
+
+      return usr;
+    } catch (error) {
+      throw new Error("Failed to get user by email!");
     }
+  }
 }
