@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { AuthenticationService } from "../service/Authentication";
 
-export class AuthenticationController {
+class AuthenticationController {
   async login(req: Request, res: Response) {
     try {
       const { email, password } = req.body;
@@ -49,3 +49,5 @@ export class AuthenticationController {
     }
   }
 }
+
+export default new AuthenticationController();
