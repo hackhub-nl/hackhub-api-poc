@@ -5,22 +5,25 @@ import {
   updateHackerspaceSchema,
 } from "../schema/HackerspaceSchema";
 import validate from "../helper/validate";
+import { auth } from "../middleware/AuthMiddleware";
 
 class HackerspaceRoutes extends BaseRoutes {
   public routes(): void {
     this.router.post(
       "",
+      auth,
       validate(createHackerspaceSchema),
       HackerspaceController.create
     );
     this.router.patch(
       "/:id",
+      auth,
       validate(updateHackerspaceSchema),
       HackerspaceController.update
     );
-    this.router.delete("/:id", HackerspaceController.delete);
-    this.router.get("", HackerspaceController.findAll);
-    this.router.get("/:id", HackerspaceController.findById);
+    this.router.delete("/:id", auth, HackerspaceController.delete);
+    this.router.get("", auth, HackerspaceController.findAll);
+    this.router.get("/:id", auth, HackerspaceController.findById);
   }
 }
 
