@@ -19,4 +19,33 @@ class Authentication {
   ): Promise<boolean> {
     return await bcrypt.compare(text, encryptedText);
   }
+
+  public static generateToken(
+    id: number,
+    email: string,
+    name: string,
+    username: string
+  ): string {
+    const secretKey: string = process.env.JWT_SECRET_KEY || "secret";
+    const payload: Payload = {
+      userId: id,
+      email: email,
+      name: name,
+      username: username,
+    };
+    const option = { expiresIn: process.env.JWT_EXPIRES_IN };
+
+    return jwt.sign(payload, secretKey, option);
+  }
+
+  public static validateToken(token: string): Payload | null {
+    try {
+      const secretKey: string = process.env.JWT_SECRET_KEY || "secret";
+      return jwt.verify(token, secretKey) as Payload;
+    } catch (error) {
+      return null;
+    }
+  }
 }
+
+export default Authentication;
