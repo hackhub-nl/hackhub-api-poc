@@ -3,6 +3,7 @@ import Database from "./config/database";
 import HackerspaceRouter from "./router/HackerspaceRouter";
 import EventRouter from "./router/EventRouter";
 import cors from "cors";
+import AuthenticationRouter from "./router/AuthenticationRouter";
 
 class App {
   public app: Application;
@@ -37,6 +38,7 @@ class App {
     });
     this.app.use("/api/v1/hackerspaces", HackerspaceRouter);
     this.app.use("/api/v1/events", EventRouter);
+    this.app.use("/api/v1/auth", AuthenticationRouter);
   }
 }
 

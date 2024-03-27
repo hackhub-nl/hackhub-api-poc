@@ -8,4 +8,4 @@ class AuthenticationRoutes extends BaseRoutes {
   }
 }
 
-export default new AuthenticationRoutes();
+export default new AuthenticationRoutes().router;
