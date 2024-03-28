@@ -4,10 +4,11 @@ import HackerspaceRouter from "./router/HackerspaceRouter";
 import EventRouter from "./router/EventRouter";
 import cors from "cors";
 import AuthenticationRouter from "./router/AuthenticationRouter";
+import config from "config";
 
 class App {
   public app: Application;
-  private CLIENT_URL = process.env.CLIENT_URL as string;
+  private clientUri: string = config.get<string>("clientUri");
 
   constructor() {
     this.app = express();
@@ -19,7 +20,7 @@ class App {
   protected plugins(): void {
     this.app.use(
       cors({
-        origin: this.CLIENT_URL,
+        origin: this.clientUri,
         credentials: true,
       })
     );
@@ -42,7 +43,7 @@ class App {
   }
 }
 
-const port: number = 7000;
+const port: number = config.get<number>("serverPort");
 const app = new App().app;
 
 app.listen(port, () => {

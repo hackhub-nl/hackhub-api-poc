@@ -1,3 +1,4 @@
+import config from "config";
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
 
@@ -6,7 +7,7 @@ export const auth = (req: Request, res: Response, next: NextFunction): any => {
     return res.status(401).send("No token!");
   }
 
-  let secretKey = process.env.JWT_SECRET_KEY || "secret";
+  let secretKey: string = config.get<string>("jwtSecretKey") || "secret";
   const token: string = req.headers.authorization.split(" ")[1];
 
   try {
