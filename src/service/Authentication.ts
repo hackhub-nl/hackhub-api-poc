@@ -1,6 +1,6 @@
 import { User } from "../models/user.model";
 import { UserRepo } from "../repository/UserRepo";
-import Authentication from "../utils/Authentication";
+import Authentication from "../utils/authentication";
 
 interface IAuthenticationService {
   login(email: string, password: string): Promise<string>;
