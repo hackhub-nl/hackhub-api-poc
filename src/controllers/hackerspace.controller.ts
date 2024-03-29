@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { Hackerspace } from "../models/hackerspace.model";
-import { HackerspaceRepo } from "../repository/HackerspaceRepo";
+import { HackerspaceRepo } from "../repositories/hackerspace.repo";
 
 class HackerspaceController {
   async create(req: Request, res: Response) {

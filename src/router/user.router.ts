@@ -1,6 +1,6 @@
 import UserController from "../controllers/user.controller";
 import BaseRoutes from "./base/base.router";
-import validateResource from "../middleware/validateResource";
+import validateResource from "../middlewares/validateResource";
 import { registerUserSchema } from "../schema/user.schema";
 
 class UserRoutes extends BaseRoutes {

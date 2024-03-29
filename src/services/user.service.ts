@@ -1,5 +1,5 @@
 import { User } from "../models/user.model";
-import { UserRepo } from "../repository/UserRepo";
+import { UserRepo } from "../repositories/user.repo";
 import Authentication from "../utils/authentication";
 
 interface IUserService {

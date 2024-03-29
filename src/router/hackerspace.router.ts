@@ -4,8 +4,8 @@ import {
   createHackerspaceSchema,
   updateHackerspaceSchema,
 } from "../schema/hackerspace.schema";
-import validate from "../middleware/validateResource";
-import { auth } from "../middleware/authMiddleware";
+import validate from "../middlewares/validateResource";
+import { auth } from "../middlewares/auth";
 
 class HackerspaceRoutes extends BaseRoutes {
   public routes(): void {

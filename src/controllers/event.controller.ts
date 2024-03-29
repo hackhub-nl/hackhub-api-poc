@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { Event } from "../models/event.model";
-import { EventRepo } from "../repository/EventRepo";
+import { EventRepo } from "../repositories/event.repo";
 
 class EventController {
   async create(req: Request, res: Response) {

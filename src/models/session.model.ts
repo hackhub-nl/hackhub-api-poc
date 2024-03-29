@@ -12,7 +12,7 @@ import { User } from "./user.model";
   tableName: Session.SESSION_TABLE_NAME,
 })
 export class Session extends Model {
-  public static SESSION_TABLE_NAME = "session" as string;
+  public static SESSION_TABLE_NAME = "sessions" as string;
   public static SESSION_ID = "id" as string;
   public static SESSION_VALID = "valid" as string;
 
