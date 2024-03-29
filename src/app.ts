@@ -1,5 +1,5 @@
 import express, { Application, Request, Response } from "express";
-import Database from "./config/database";
+import Database from "./utils/connect";
 import HackerspaceRouter from "./router/HackerspaceRouter";
 import EventRouter from "./router/EventRouter";
 import cors from "cors";
