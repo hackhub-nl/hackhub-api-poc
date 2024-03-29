@@ -1,4 +1,4 @@
-import { User } from "../model/User";
+import { User } from "../models/user.model";
 import { UserRepo } from "../repository/UserRepo";
 import Authentication from "../utils/Authentication";
 

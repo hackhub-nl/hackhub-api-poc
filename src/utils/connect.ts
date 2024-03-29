@@ -1,7 +1,7 @@
 import { Sequelize } from "sequelize-typescript";
-import { Hackerspace } from "../model/Hackerspace";
-import { Event } from "../model/Event";
-import { User } from "../model/User";
+import { Hackerspace } from "../models/hackerspace.model";
+import { Event } from "../models/event.model";
+import { User } from "../models/user.model";
 import config from "config";
 import logger from "./logger";
 

@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { Event } from "../model/Event";
+import { Event } from "../models/event.model";
 import { EventRepo } from "../repository/EventRepo";
 
 class EventController {

@@ -1,4 +1,4 @@
-import { Event } from "../model/Event";
+import { Event } from "../models/event.model";
 
 interface IEventRepo {
   save(event: Event): Promise<void>;

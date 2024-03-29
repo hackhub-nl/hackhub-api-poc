@@ -1,4 +1,4 @@
-import { User } from "../model/User";
+import { User } from "../models/user.model";
 
 interface IUserRepo {
   save(user: User): Promise<void>;

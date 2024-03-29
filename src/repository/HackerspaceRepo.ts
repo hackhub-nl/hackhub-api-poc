@@ -1,4 +1,4 @@
-import { Hackerspace } from "../model/Hackerspace";
+import { Hackerspace } from "../models/hackerspace.model";
 
 interface IHackerspaceRepo {
   save(hackerspace: Hackerspace): Promise<void>;

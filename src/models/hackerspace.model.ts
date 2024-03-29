@@ -1,5 +1,5 @@
 import { Model, Table, Column, DataType, HasMany } from "sequelize-typescript";
-import { Event } from "./Event";
+import { Event } from "./event.model";
 
 @Table({
   tableName: Hackerspace.HACKERSPACE_TABLE_NAME,

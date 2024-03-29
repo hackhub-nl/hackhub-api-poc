@@ -6,7 +6,7 @@ import {
   ForeignKey,
   BelongsTo,
 } from "sequelize-typescript";
-import { Hackerspace } from "./Hackerspace";
+import { Hackerspace } from "./hackerspace.model";
 
 @Table({
   tableName: Event.EVENT_TABLE_NAME,

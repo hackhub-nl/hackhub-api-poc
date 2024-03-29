@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { Hackerspace } from "../model/Hackerspace";
+import { Hackerspace } from "../models/hackerspace.model";
 import { HackerspaceRepo } from "../repository/HackerspaceRepo";
 
 class HackerspaceController {
