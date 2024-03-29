@@ -2,6 +2,7 @@ import * as dotenv from "dotenv";
 dotenv.config();
 
 export default {
+  host: process.env.SERVER_HOST,
   port: process.env.SERVER_PORT,
   clientUri: process.env.CLIENT_URL,
   jwtSecretKey: process.env.JWT_SECRET_KEY,

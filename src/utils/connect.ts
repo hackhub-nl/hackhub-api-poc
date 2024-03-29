@@ -3,6 +3,7 @@ import { Hackerspace } from "../model/Hackerspace";
 import { Event } from "../model/Event";
 import { User } from "../model/User";
 import config from "config";
+import logger from "./logger";
 
 class Database {
   public sequelize: Sequelize | undefined;
@@ -25,10 +26,10 @@ class Database {
     await this.sequelize
       .authenticate()
       .then(() => {
-        console.log("Connected to the database!");
+        logger.info("Connected to the database");
       })
       .catch((err) => {
-        console.log("Unable to conned to the database!", err);
+        logger.error("Unable to conned to the database", err);
       });
   }
 }

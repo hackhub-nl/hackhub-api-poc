@@ -44,9 +44,10 @@ class App {
   }
 }
 
+const host = config.get<string>("host");
 const port = config.get<number>("port");
 const app = new App().app;
 
 app.listen(port, async () => {
-  logger.info(`App is running at http://localhost:${port}`);
+  logger.info(`App is running at http://${host}:${port}`);
 });
