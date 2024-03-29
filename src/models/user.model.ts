@@ -1,4 +1,5 @@
-import { Column, DataType, Model, Table } from "sequelize-typescript";
+import { Column, DataType, HasMany, Model, Table } from "sequelize-typescript";
+import { Session } from "./session.model";
 
 @Table({
   tableName: User.USER_TABLE_NAME,
@@ -42,4 +43,7 @@ export class User extends Model {
     field: User.USER_USERNAME,
   })
   username!: string;
+
+  @HasMany(() => Session, "userId")
+  sessions!: Session[];
 }

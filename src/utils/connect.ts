@@ -4,6 +4,7 @@ import { Event } from "../models/event.model";
 import { User } from "../models/user.model";
 import config from "config";
 import logger from "./logger";
+import { Session } from "../models/session.model";
 
 class Database {
   public sequelize: Sequelize | undefined;
@@ -20,7 +21,7 @@ class Database {
       username: config.get<string>("postgresUser"),
       password: config.get<string>("postgresPassword"),
       dialect: "postgres",
-      models: [Hackerspace, Event, User],
+      models: [Hackerspace, Event, User, Session],
     });
 
     await this.sequelize
