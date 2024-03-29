@@ -1,4 +1,4 @@
-import BaseRoutes from "./base/BaseRouter";
+import BaseRoutes from "./base/base.router";
 import EventController from "../controllers/event.controller";
 import validate from "../middleware/validateResource";
 import { createEventSchema, updateEventSchema } from "../schema/EventSchema";

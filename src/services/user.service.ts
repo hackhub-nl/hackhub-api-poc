@@ -2,7 +2,7 @@ import { User } from "../models/user.model";
 import { UserRepo } from "../repository/UserRepo";
 import Authentication from "../utils/authentication";
 
-interface IAuthenticationService {
+interface IUserService {
   login(email: string, password: string): Promise<string>;
   register(
     email: string,
@@ -12,7 +12,7 @@ interface IAuthenticationService {
   ): Promise<void>;
 }
 
-export class AuthenticationService implements IAuthenticationService {
+export class UserService implements IUserService {
   async login(email: string, password: string): Promise<string> {
     const usr = await new UserRepo().findByEmail(email);
 

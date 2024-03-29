@@ -1,11 +1,11 @@
 import { Request, Response } from "express";
-import { AuthenticationService } from "../services/user.service.ts.js";
+import { UserService } from "../services/user.service";
 
-class AuthenticationController {
+class UserController {
   async login(req: Request, res: Response) {
     try {
       const { email, password } = req.body;
-      const token = await new AuthenticationService().login(email, password);
+      const token = await new UserService().login(email, password);
 
       if (token === "") {
         return res.status(400).json({
@@ -30,12 +30,7 @@ class AuthenticationController {
   async register(req: Request, res: Response) {
     try {
       const { name, username, email, password } = req.body;
-      await new AuthenticationService().register(
-        email,
-        password,
-        name,
-        username
-      );
+      await new UserService().register(email, password, name, username);
 
       return res.status(200).json({
         status: "Ok!",
@@ -50,4 +45,4 @@ class AuthenticationController {
   }
 }
 
-export default new AuthenticationController();
+export default new UserController();

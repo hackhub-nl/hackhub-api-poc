@@ -1,9 +1,9 @@
 import express, { Application, Request, Response } from "express";
 import Database from "./utils/connect";
-import HackerspaceRouter from "./router/HackerspaceRouter";
-import EventRouter from "./router/EventRouter";
+import HackerspaceRouter from "./router/hackerspace.router";
+import EventRouter from "./router/event.router";
 import cors from "cors";
-import AuthenticationRouter from "./router/AuthenticationRouter";
+import AuthenticationRouter from "./router/user.router";
 import config from "config";
 import logger from "./utils/logger";
 
