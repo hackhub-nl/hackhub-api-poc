@@ -1,11 +1,11 @@
 import BaseRoutes from "./base/BaseRouter";
-import HackerspaceController from "../controller/HackerspaceController";
+import HackerspaceController from "../controllers/hackerspace.controller";
 import {
   createHackerspaceSchema,
   updateHackerspaceSchema,
 } from "../schema/HackerspaceSchema";
 import validate from "../middleware/validateResource";
-import { auth } from "../middleware/AuthMiddleware";
+import { auth } from "../middleware/authMiddleware";
 
 class HackerspaceRoutes extends BaseRoutes {
   public routes(): void {

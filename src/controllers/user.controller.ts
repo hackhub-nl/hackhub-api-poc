@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { AuthenticationService } from "../service/Authentication";
+import { AuthenticationService } from "../services/user.service.ts.js";
 
 class AuthenticationController {
   async login(req: Request, res: Response) {

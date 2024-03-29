@@ -1,4 +1,4 @@
-import AuthenticationController from "../controller/AuthenticationController";
+import AuthenticationController from "../controllers/user.controller";
 import BaseRoutes from "./base/BaseRouter";
 
 class AuthenticationRoutes extends BaseRoutes {
