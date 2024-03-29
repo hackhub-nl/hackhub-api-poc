@@ -3,7 +3,7 @@ import HackerspaceController from "../controllers/hackerspace.controller";
 import {
   createHackerspaceSchema,
   updateHackerspaceSchema,
-} from "../schema/HackerspaceSchema";
+} from "../schema/hackerspace.schema";
 import validate from "../middleware/validateResource";
 import { auth } from "../middleware/authMiddleware";
 
