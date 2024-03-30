@@ -1,8 +1,8 @@
 import BaseRoutes from "./base/base.router";
 import EventController from "../controllers/event.controller";
-import validate from "../middlewares/validateResource";
+import validate from "../middleware/validateResource";
 import { createEventSchema, updateEventSchema } from "../schema/event.schema";
-import { auth } from "../middlewares/auth";
+import { auth } from "../middleware/auth";
 
 class EventRoutes extends BaseRoutes {
   public routes(): void {

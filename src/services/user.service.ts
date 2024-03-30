@@ -14,20 +14,20 @@ interface IUserService {
 
 export class UserService implements IUserService {
   async login(email: string, password: string): Promise<string> {
-    const usr = await new UserRepo().findByEmail(email);
+    const user = await new UserRepo().findByEmail(email);
 
-    if (!usr) {
-      throw new Error("Bad Request!");
+    if (!user) {
+      throw new Error("Bad request");
     }
 
-    let compare = await Authentication.passwordCompare(password, usr.password);
+    let compare = await Authentication.passwordCompare(password, user.password);
 
     if (compare) {
       return Authentication.generateToken(
-        usr.id,
-        usr.email,
-        usr.name,
-        usr.username
+        user.id,
+        user.email,
+        user.name,
+        user.username
       );
     }
     return "";
@@ -43,15 +43,15 @@ export class UserService implements IUserService {
       const hashedPassword: string = await Authentication.passwordHash(
         password
       );
-      const usr = new User();
-      usr.email = email;
-      usr.password = hashedPassword;
-      usr.username = username;
-      usr.name = name;
+      const user = new User();
+      user.email = email;
+      user.password = hashedPassword;
+      user.username = username;
+      user.name = name;
 
-      await new UserRepo().save(usr);
+      await new UserRepo().save(user);
     } catch (error) {
-      throw new Error("Error login!");
+      throw new Error("Error register");
     }
   }
 }

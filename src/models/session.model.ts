@@ -34,8 +34,8 @@ export class Session extends Model {
   @Column({
     type: DataType.INTEGER,
   })
-  hackerspaceId!: number;
+  userId!: number;
 
   @BelongsTo(() => User)
-  hackerspace!: User;
+  user!: User;
 }

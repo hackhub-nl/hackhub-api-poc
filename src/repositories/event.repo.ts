@@ -17,7 +17,7 @@ export class EventRepo implements IEventRepo {
         hackerspaceId: event.hackerspaceId,
       });
     } catch (error) {
-      throw new Error("Failed to create new event!");
+      throw new Error("Failed to create new event");
     }
   }
   async update(event: Event): Promise<void> {
@@ -28,7 +28,7 @@ export class EventRepo implements IEventRepo {
         },
       });
       if (!evt) {
-        throw new Error("Event not found!");
+        throw new Error("Event not found");
       }
       evt.name = event.name;
       evt.description = event.description;
@@ -36,7 +36,7 @@ export class EventRepo implements IEventRepo {
 
       await evt.save();
     } catch (error) {
-      throw new Error("Failed to update event!");
+      throw new Error("Failed to update event");
     }
   }
   async delete(eventId: number): Promise<void> {
@@ -47,11 +47,11 @@ export class EventRepo implements IEventRepo {
         },
       });
       if (!evt) {
-        throw new Error("Event not found!");
+        throw new Error("Event not found");
       }
       await evt.destroy();
     } catch (error) {
-      throw new Error("Failed to delete event!");
+      throw new Error("Failed to delete event");
     }
   }
 
@@ -63,18 +63,18 @@ export class EventRepo implements IEventRepo {
         },
       });
       if (!evt) {
-        throw new Error("Event not found!");
+        throw new Error("Event not found");
       }
       return evt;
     } catch (error) {
-      throw new Error("Failed to retrieve event by id!");
+      throw new Error("Failed to retrieve event by id");
     }
   }
   async retrieveAll(): Promise<Event[]> {
     try {
       return await Event.findAll();
     } catch (error) {
-      throw new Error("Failed to retrieve all events!");
+      throw new Error("Failed to retrieve all events");
     }
   }
 }
