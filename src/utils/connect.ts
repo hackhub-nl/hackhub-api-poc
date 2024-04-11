@@ -6,33 +6,55 @@ import config from "config";
 import logger from "./logger";
 import { Session } from "../models/session.model";
 
-class Database {
-  public sequelize: Sequelize | undefined;
+async function connect() {
+  const sequelize = new Sequelize({
+    database: config.get<string>("postgresDB"),
+    host: config.get<string>("postgresHost"),
+    port: config.get<number>("postgresPort"),
+    username: config.get<string>("postgresUser"),
+    password: config.get<string>("postgresPassword"),
+    dialect: "postgres",
+    models: [Hackerspace, Event, User, Session],
+  });
 
-  constructor() {
-    this.connectToPostgreSQL();
-  }
-
-  private async connectToPostgreSQL() {
-    this.sequelize = new Sequelize({
-      database: config.get<string>("postgresDB"),
-      host: config.get<string>("postgresHost"),
-      port: config.get<number>("postgresPort"),
-      username: config.get<string>("postgresUser"),
-      password: config.get<string>("postgresPassword"),
-      dialect: "postgres",
-      models: [Hackerspace, Event, User, Session],
-    });
-
-    await this.sequelize
-      .authenticate()
-      .then(() => {
-        logger.info("Connected to the database");
-      })
-      .catch((err) => {
-        logger.error("Unable to conned to the database", err);
-      });
+  try {
+    await sequelize.authenticate();
+    logger.info("DB connected");
+  } catch (error) {
+    logger.error("Could not connect to db");
+    process.exit(1);
   }
 }
 
-export default Database;
+export default connect;
+
+// class Database {
+//   public sequelize: Sequelize | undefined;
+
+//   constructor() {
+//     this.connectToPostgreSQL();
+//   }
+
+//   private async connectToPostgreSQL() {
+//     this.sequelize = new Sequelize({
+//       database: config.get<string>("postgresDB"),
+//       host: config.get<string>("postgresHost"),
+//       port: config.get<number>("postgresPort"),
+//       username: config.get<string>("postgresUser"),
+//       password: config.get<string>("postgresPassword"),
+//       dialect: "postgres",
+//       models: [Hackerspace, Event, User, Session],
+//     });
+
+//     await this.sequelize
+//       .authenticate()
+//       .then(() => {
+//         logger.info("Connected to the database");
+//       })
+//       .catch((err) => {
+//         logger.error("Unable to conned to the database", err);
+//       });
+//   }
+// }
+
+// export default Database;
