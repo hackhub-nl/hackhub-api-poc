@@ -1,10 +1,25 @@
 import { omit } from "lodash";
 import { UserRepo } from "../repositories/user.repo";
+import { User } from "../models/user.model";
 
-export async function createUser(
-
+export async function registerUser(
+  name: string,
+  username: string,
+  email: string,
+  password: string
 ) {
+  try {
+    const user = await User.create({
+      name: name,
+      username: username,
+      password: password,
+      email: email,
+    });
 
+    return omit(JSON.parse(JSON.stringify(user)), "password");
+  } catch (error: any) {
+    throw new Error("Failed to create user!");
+  }
 }
 
 export async function validatePassword({

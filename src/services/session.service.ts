@@ -23,23 +23,21 @@ export async function findSessions() {
 }
 
 export async function updateSession(session: Session) {
-  
-
   try {
     const ssn = await Session.findOne({
       where: {
         id: session.id,
       },
     });
-  
+
     if (!ssn) {
       throw new Error("Session not found!");
     }
-  
+
     ssn.user = session.user;
     ssn.valid = session.valid;
     ssn.userAgent = session.userAgent;
-  
+
     return await ssn.save();
   } catch (error) {
     throw new Error("Failed to update session!");
