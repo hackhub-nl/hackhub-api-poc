@@ -15,6 +15,7 @@ export class Session extends Model {
   public static SESSION_TABLE_NAME = "sessions" as string;
   public static SESSION_ID = "id" as string;
   public static SESSION_VALID = "valid" as string;
+  public static SESSION_USER_AGENT = "userAgent" as string;
 
   @Column({
     type: DataType.INTEGER,
@@ -29,6 +30,12 @@ export class Session extends Model {
     field: Session.SESSION_VALID,
   })
   valid!: boolean;
+
+  @Column({
+    type: DataType.STRING,
+    field: Session.SESSION_USER_AGENT,
+  })
+  userAgent!: string;
 
   @ForeignKey(() => User)
   @Column({
