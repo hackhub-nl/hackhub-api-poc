@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { omit } from "lodash";
 import logger from "../utils/logger";
 import { RegisterUserInput } from "../schema/user.schema";
-import { registerUser } from "../services/user.service";
+import { registerUser } from "../service/user.service";
 
 export async function registerUserHandler(
   req: Request<{}, {}, RegisterUserInput["body"]>,
