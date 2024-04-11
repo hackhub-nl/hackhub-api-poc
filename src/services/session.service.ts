@@ -6,21 +6,41 @@ import { findUser } from "./user.service";
 import config from "config";
 import { signJwt } from "../utils/jwt.utils";
 
-export async function createSession(userId: number) {
-  const session = new Session();
-  session.userId = userId;
-
-  await new SessionRepo().save(session);
+export async function createSession(userId: number, userAgent: string) {
+  const session = await Session.create({
+    userId: userId,
+    userAgent: userAgent,
+  });
 
   return JSON.parse(JSON.stringify(session));
 }
 
 export async function findSessions() {
-  throw new Error("Method not implemented.");
+  return Session.findAll();
 }
 
-export async function updateSession() {
-  throw new Error("Method not implemented.");
+export async function updateSession(session: Session) {
+  
+
+  try {
+    const ssn = await Session.findOne({
+      where: {
+        id: session.id,
+      },
+    });
+  
+    if (!ssn) {
+      throw new Error("Session not found!");
+    }
+  
+    ssn.user = session.user;
+    ssn.valid = session.valid;
+    ssn.userAgent = session.userAgent;
+  
+    return await ssn.save();
+  } catch (error) {
+    throw new Error("Failed to update session!");
+  }
 }
 
 export async function reIssueAccessToken({
@@ -47,7 +67,6 @@ export async function reIssueAccessToken({
 
   return accessToken;
 }
-
 
 // interface ISessionService {
 //   createSession(valid: boolean, userId: number): Promise<void>;
