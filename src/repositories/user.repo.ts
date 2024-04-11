@@ -1,4 +1,5 @@
 import { User } from "../models/user.model";
+import bcrypt from "bcrypt";
 
 interface IUserRepo {
   save(user: User): Promise<void>;
@@ -7,9 +8,11 @@ interface IUserRepo {
   getById(userId: number): Promise<User>;
   getAll(): Promise<User[]>;
   findByEmail(email: string): Promise<User>;
+  comparePassword(candidatePassword: string, user: User): Promise<Boolean>;
 }
 
 export class UserRepo implements IUserRepo {
+  
   async save(user: User): Promise<void> {
     try {
       await User.create({
@@ -103,5 +106,10 @@ export class UserRepo implements IUserRepo {
     } catch (error) {
       throw new Error("Failed to get user by email!");
     }
+  }
+
+  async comparePassword(candidatePassword: string, user: User): Promise<Boolean> {
+    return bcrypt.compare(candidatePassword, user.password).catch((e) => false);
+
   }
 }
