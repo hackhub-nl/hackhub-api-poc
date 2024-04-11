@@ -1,5 +1,6 @@
 import { Column, DataType, HasMany, Model, Table } from "sequelize-typescript";
 import { Session } from "./session.model";
+import bcrypt from "bcrypt";
 
 @Table({
   tableName: User.USER_TABLE_NAME,
@@ -11,6 +12,12 @@ export class User extends Model {
   public static USER_PASSWORD = "password" as string;
   public static USER_EMAIL = "email" as string;
   public static USER_USERNAME = "username" as string;
+
+  public async comparePassword(candidatePassword: string): Promise<boolean> {
+    return bcrypt
+      .compare(candidatePassword, User.USER_PASSWORD)
+      .catch((e) => false);
+  }
 
   @Column({
     type: DataType.INTEGER,
