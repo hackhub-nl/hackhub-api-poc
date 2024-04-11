@@ -10,13 +10,9 @@ const validateResource =
         query: req.query,
         params: req.params,
       });
-      return next();
+      next();
     } catch (err: any) {
-      const error_message = JSON.parse(err.message);
-      return res.status(400).json({
-        status: "Bad Request!",
-        message: error_message[0].message,
-      });
+      return res.status(400).send(err.errors);
     }
   };
 
