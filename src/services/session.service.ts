@@ -1,5 +1,4 @@
 import { Session } from "../models/session.model";
-import { SessionRepo } from "../repositories/session.repo";
 import { verifyJwt } from "../utils/jwt.utils";
 import { get } from "lodash";
 import { findUser } from "./user.service";
@@ -16,7 +15,11 @@ export async function createSession(userId: number, userAgent: string) {
 }
 
 export async function findSessions() {
-  return Session.findAll();
+  try {
+    return await Session.findAll();
+  } catch (error) {
+    throw new Error("Failed to retrieve all sessions");
+  }
 }
 
 export async function updateSession(session: Session) {
