@@ -1,5 +1,4 @@
 import { omit } from "lodash";
-import { UserRepo } from "../repositories/user.repo";
 import { User } from "../models/user.model";
 
 export async function registerUser(
@@ -29,14 +28,20 @@ export async function validatePassword({
   email: string;
   password: string;
 }) {
-  const useRepo = new UserRepo();
-  const user = await useRepo.findByEmail(email);
+  // const useRepo = new UserRepo();
+  // const user = await useRepo.findByEmail(email);
+
+  const user = await User.findOne({
+    where: {
+      email: email,
+    },
+  });
 
   if (!user) {
     return false;
   }
 
-  const isValid = await useRepo.comparePassword(password, user);
+  const isValid = await user.comparePassword(password);
 
   if (!isValid) return false;
 
@@ -44,8 +49,16 @@ export async function validatePassword({
 }
 
 export async function findUser(userId: number) {
-  const user = await new UserRepo().getById(userId);
-  return user;
+  try {
+    const user = await User.findOne({
+      where: {
+        id: userId,
+      },
+    });
+    return user;
+  } catch (error) {
+    throw new Error("Failed to get user by id!");
+  }
 }
 
 // interface IUserService {
