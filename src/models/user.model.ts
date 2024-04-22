@@ -1,6 +1,5 @@
 import { Column, DataType, HasMany, Model, Table } from "sequelize-typescript";
 import { Session } from "./session.model";
-import bcrypt from "bcrypt";
 
 @Table({
   tableName: User.USER_TABLE_NAME,
@@ -8,16 +7,11 @@ import bcrypt from "bcrypt";
 export class User extends Model {
   public static USER_TABLE_NAME = "users" as string;
   public static USER_ID = "id" as string;
+  public static USER_EMAIL = "email" as string;
   public static USER_NAME = "name" as string;
   public static USER_PASSWORD = "password" as string;
-  public static USER_EMAIL = "email" as string;
-  public static USER_USERNAME = "username" as string;
-
-  public async comparePassword(candidatePassword: string): Promise<boolean> {
-    return bcrypt
-      .compare(candidatePassword, User.USER_PASSWORD)
-      .catch((e) => false);
-  }
+  public static USER_CREATED_AT = "createdAt" as string;
+  public static USER_UPDATED_AT = "updatedAt" as string;
 
   @Column({
     type: DataType.INTEGER,
@@ -26,6 +20,12 @@ export class User extends Model {
     field: User.USER_ID,
   })
   id!: number;
+
+  @Column({
+    type: DataType.STRING(100),
+    field: User.USER_EMAIL,
+  })
+  email!: string;
 
   @Column({
     type: DataType.STRING(100),
@@ -40,16 +40,16 @@ export class User extends Model {
   password!: string;
 
   @Column({
-    type: DataType.STRING(100),
-    field: User.USER_EMAIL,
+    type: DataType.DATE,
+    field: User.USER_CREATED_AT,
   })
-  email!: string;
+  createdAt!: Date;
 
   @Column({
-    type: DataType.STRING(100),
-    field: User.USER_USERNAME,
+    type: DataType.DATE,
+    field: User.USER_UPDATED_AT,
   })
-  username!: string;
+  updatedAt!: Date;
 
   @HasMany(() => Session, "userId")
   sessions!: Session[];
