@@ -1,6 +1,6 @@
 import { registerUserHandler } from "../controllers/user.controller";
 import BaseRoutes from "./base/base.router";
-import validateResource from "../middleware/validateResource";
+import validate from "../middleware/validateResource";
 import { registerUserSchema } from "../schema/user.schema";
 
 class UserRoutes extends BaseRoutes {
@@ -8,7 +8,7 @@ class UserRoutes extends BaseRoutes {
     //this.router.post("/login", UserController.login);
     this.router.post(
       "/register",
-      validateResource(registerUserSchema),
+      validate(registerUserSchema),
       registerUserHandler
     );
   }
