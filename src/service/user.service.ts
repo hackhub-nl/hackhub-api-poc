@@ -1,5 +1,6 @@
 import { omit } from "lodash";
 import { User } from "../models/user.model";
+import authentication from "../utils/authentication";
 
 export async function registerUser(
   name: string,
@@ -38,7 +39,7 @@ export async function validatePassword({
     return false;
   }
 
-  const isValid = await user.comparePassword(password);
+  let isValid = await authentication.passwordCompare(password, user.password);
 
   if (!isValid) return false;
 
