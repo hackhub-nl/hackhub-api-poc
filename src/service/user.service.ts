@@ -3,17 +3,19 @@ import { User } from "../models/user.model";
 import authentication from "../utils/authentication";
 
 export async function registerUser(
-  name: string,
-  username: string,
   email: string,
-  password: string
+  name: string,
+  password: string,
+  createdAt: Date,
+  updatedAt: Date
 ) {
   try {
     const user = await User.create({
-      name: name,
-      username: username,
-      password: password,
       email: email,
+      name: name,
+      password: password,
+      createdAt: createdAt,
+      updatedAt: updatedAt,
     });
 
     return omit(JSON.parse(JSON.stringify(user)), "password");

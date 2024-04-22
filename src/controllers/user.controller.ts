@@ -9,8 +9,8 @@ export async function registerUserHandler(
   res: Response
 ) {
   try {
-    const { name, username, email, password } = req.body;
-    const user = await registerUser(name, username, email, password);
+    const { email, name, password, createdAt, updatedAt } = req.body;
+    const user = await registerUser(email, name, password, createdAt, updatedAt);
     return res.send(omit(JSON.parse(JSON.stringify(user)), "password"));
   } catch (error: any) {
     logger.error(error);
