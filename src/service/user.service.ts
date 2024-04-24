@@ -5,17 +5,13 @@ import authentication from "../utils/authentication";
 export async function registerUser(
   email: string,
   name: string,
-  password: string,
-  createdAt: Date,
-  updatedAt: Date
+  password: string
 ) {
   try {
     const user = await User.create({
       email: email,
       name: name,
       password: password,
-      createdAt: createdAt,
-      updatedAt: updatedAt,
     });
 
     return omit(JSON.parse(JSON.stringify(user)), "password");

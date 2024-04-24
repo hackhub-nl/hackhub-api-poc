@@ -21,12 +21,6 @@ export const registerUserSchema = z.object({
       passwordConfirmation: z.string({
         required_error: "Password confirmation is required",
       }),
-      createdAt: z.date({
-        required_error: "Crated at time is required",
-      }),
-      updatedAt: z.date({
-        required_error: "Updated at time is required",
-      }),
     })
     .refine((data) => data.password === data.passwordConfirmation, {
       message: "Passwords do not match",
