@@ -23,7 +23,8 @@ export class User extends Model {
 
   @Column({
     type: DataType.STRING(100),
-    field: User.USER_EMAIL,
+    unique: true,
+    field: User.USER_EMAIL
   })
   email!: string;
 
