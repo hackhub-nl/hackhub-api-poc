@@ -1,5 +1,15 @@
-import { Column, DataType, HasMany, Model, Table } from "sequelize-typescript";
+import {
+  BeforeCreate,
+  BeforeUpdate,
+  Column,
+  DataType,
+  HasMany,
+  Model,
+  Table,
+} from "sequelize-typescript";
 import { Session } from "./session.model";
+import bcrypt from "bcrypt";
+import config from "config";
 
 @Table({
   tableName: User.USER_TABLE_NAME,
@@ -13,6 +23,15 @@ export class User extends Model {
   public static USER_CREATED_AT = "createdAt" as string;
   public static USER_UPDATED_AT = "updatedAt" as string;
 
+  @BeforeCreate
+  @BeforeUpdate
+  static hashPassword(user: User) {
+    if (user.password) {
+      const salt = bcrypt.genSaltSync(config.get<number>("saltWorkFactor"));
+      user.password = bcrypt.hashSync(user.password, salt);
+    }
+  }
+
   @Column({
     type: DataType.INTEGER,
     primaryKey: true,
@@ -24,7 +43,7 @@ export class User extends Model {
   @Column({
     type: DataType.STRING(100),
     unique: true,
-    field: User.USER_EMAIL
+    field: User.USER_EMAIL,
   })
   email!: string;
 

@@ -10,13 +10,13 @@ interface Payload {
 }
 
 class Authentication {
-  public static async passwordHash(password: string): Promise<string> {
-    const salt = await bcrypt.genSalt(config.get<number>("saltWorkFactor"));
+  // public static async passwordHash(password: string): Promise<string> {
+  //   const salt = await bcrypt.genSalt(config.get<number>("saltWorkFactor"));
 
-    const hash = await bcrypt.hashSync(password, salt);
+  //   const hash = await bcrypt.hashSync(password, salt);
 
-    return hash;
-  }
+  //   return hash;
+  // }
 
   public static async passwordCompare(
     candidatePassword: string,
