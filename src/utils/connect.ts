@@ -5,6 +5,7 @@ import { Hackerspace } from "../models/hackerspace.model";
 import { Event } from "../models/event.model";
 import { User } from "../models/user.model";
 import { Session } from "../models/session.model";
+import { error } from "console";
 
 async function connect() {
   const sequelize = new Sequelize({
@@ -17,13 +18,24 @@ async function connect() {
     models: [Hackerspace, Event, User, Session],
   });
 
-  try {
-    await sequelize.authenticate();
-    logger.info("DB connected");
-  } catch (error) {
-    logger.error("Could not connect to DB");
-    process.exit(1);
-  }
+  await sequelize
+    .authenticate()
+    .then(() => {
+      logger.info("DB connected");
+    })
+    .catch((err) => {
+      logger.error("Could not connect to DB", err);
+      process.exit(1);
+    });
+
+  await sequelize
+    ?.sync()
+    .then(() => {
+      logger.info("DB synched");
+    })
+    .catch((err) => {
+      logger.error("Could not sync DB", err);
+    });
 }
 
 export default connect;
