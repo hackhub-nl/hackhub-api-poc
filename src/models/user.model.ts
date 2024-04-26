@@ -32,6 +32,12 @@ export class User extends Model {
     }
   }
 
+  async comparePassword(candidatePassword: string): Promise<boolean> {
+    return bcrypt
+      .compare(candidatePassword, User.USER_PASSWORD)
+      .catch((err) => false);
+  }
+
   @Column({
     type: DataType.INTEGER,
     primaryKey: true,
