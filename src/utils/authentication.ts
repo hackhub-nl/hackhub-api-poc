@@ -18,14 +18,14 @@ class Authentication {
   //   return hash;
   // }
 
-  public static async passwordCompare(
-    candidatePassword: string,
-    userPassword: string
-  ): Promise<boolean> {
-    return await bcrypt
-      .compare(candidatePassword, userPassword)
-      .catch((err) => false);
-  }
+  // public static async passwordCompare(
+  //   candidatePassword: string,
+  //   userPassword: string
+  // ): Promise<boolean> {
+  //   return await bcrypt
+  //     .compare(candidatePassword, userPassword)
+  //     .catch((err) => false);
+  // }
 
   public static generateToken(
     id: number,
