@@ -2,6 +2,7 @@ import {
   BelongsTo,
   Column,
   DataType,
+  Default,
   ForeignKey,
   Model,
   Table,
@@ -25,6 +26,7 @@ export class Session extends Model {
   })
   id!: number;
 
+  @Default(true)
   @Column({
     type: DataType.BOOLEAN,
     field: Session.SESSION_VALID,
