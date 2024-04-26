@@ -5,7 +5,6 @@ import { Hackerspace } from "../models/hackerspace.model";
 import { Event } from "../models/event.model";
 import { User } from "../models/user.model";
 import { Session } from "../models/session.model";
-import { error } from "console";
 
 async function connect() {
   const sequelize = new Sequelize({
@@ -31,7 +30,7 @@ async function connect() {
   await sequelize
     ?.sync()
     .then(() => {
-      logger.info("DB synched");
+      logger.info("DB synced");
     })
     .catch((err) => {
       logger.error("Could not sync DB", err);
