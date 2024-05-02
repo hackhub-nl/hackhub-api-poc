@@ -12,7 +12,7 @@ export default {
   postgresPassword: process.env.POSTGRES_PASSWORD,
   postgresDB: process.env.POSTGRES_DB,
 
-  saltWorkFactor: process.env.SALT_WORK_FACTOR,
+  saltWorkFactor: Number(process.env.SALT_WORK_FACTOR),
   signTokenAlgorithm: process.env.SIGN_TOKEN_ALGORITHM,
   accessTokenTtl: process.env.ACCESS_TOKEN_TTL,
   refreshTokenTtl: process.env.REFRESH_TOKEN_TTL,
