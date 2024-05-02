@@ -12,10 +12,9 @@ export async function registerUser(
       name: name,
       password: password,
     });
-
     return omit(JSON.parse(JSON.stringify(user)), "password");
-  } catch (error: any) {
-    throw new Error("Failed to create user!");
+  } catch (err: any) {
+    throw new Error(err);
   }
 }
 
