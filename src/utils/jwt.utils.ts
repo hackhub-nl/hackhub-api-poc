@@ -3,11 +3,13 @@ import config from "config";
 
 const privateKey = config.get<string>("privateKey");
 const publicKey = config.get<string>("publicKey");
+const algo = config.get<jwt.Algorithm | undefined>("signTokenAlgorithm");
 
 export function signJwt(object: Object, options?: jwt.SignOptions | undefined) {
   return jwt.sign(object, privateKey, {
+    // check if options is undefined before spreading it
     ...(options && options),
-    algorithm: config.get<jwt.Algorithm | undefined>("signTokenAlgorithm"),
+    algorithm: algo,
   });
 }
 
@@ -19,10 +21,10 @@ export function verifyJwt(token: string) {
       expired: false,
       decoded,
     };
-  } catch (error: any) {
+  } catch (err: any) {
     return {
       valid: false,
-      expired: error.message === "jwt expired",
+      expired: err.message === "jwt expired",
       decoded: null,
     };
   }
