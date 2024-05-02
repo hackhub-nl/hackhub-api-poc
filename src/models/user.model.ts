@@ -25,10 +25,10 @@ export class User extends Model {
 
   @BeforeCreate
   @BeforeUpdate
-  static hashPassword(user: User) {
+  static async hashPassword(user: User) {
     if (user.password) {
-      const salt = bcrypt.genSaltSync(config.get<number>("saltWorkFactor"));
-      user.password = bcrypt.hashSync(user.password, salt);
+      const salt = await bcrypt.genSalt(config.get<number>("saltWorkFactor"));
+      user.password = await bcrypt.hashSync(user.password, salt);
     }
   }
 
