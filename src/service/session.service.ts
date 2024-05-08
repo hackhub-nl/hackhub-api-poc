@@ -19,7 +19,7 @@ export async function findSessions(userId: number, valid: boolean) {
     const ssn = await Session.findAll({
       where: {
         userId: userId,
-        valid: true,
+        valid: valid,
       },
     });
     return ssn;
