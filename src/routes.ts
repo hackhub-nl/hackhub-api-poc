@@ -3,36 +3,25 @@ import { registerUserSchema } from "./schema/user.schema";
 import validate from "./middleware/validateResource";
 import { registerUserHandler } from "./controllers/user.controller";
 import { loginSessionSchema } from "./schema/session.schema";
-import { loginUserSessionHandler } from "./controllers/session.controller";
+import {
+  getUserSessionsHandler,
+  loginUserSessionHandler,
+} from "./controllers/session.controller";
+import requireUser from "./middleware/requireUser";
 
 // curl http://localhost:port/healthcheck
 function routes(app: Express) {
   app.get("/healthcheck", (req: Request, res: Response) => res.sendStatus(200));
 
-  app.post(
-    "/api/users",
-    validate(registerUserSchema),
-    registerUserHandler
-  );
+  app.post("/api/users", validate(registerUserSchema), registerUserHandler);
 
   app.post(
     "/api/sessions",
     validate(loginSessionSchema),
     loginUserSessionHandler
   );
+
+  app.get("/api/sessions", requireUser, getUserSessionsHandler);
 }
 
 export default routes;
-
-// class UserRoutes extends BaseRoutes {
-//   routes(): void {
-//     this.router.post("/login", UserController.login);
-//     this.router.post(
-//       "/register",
-//       validateResource(registerUserSchema),
-//       UserController.register
-//     );
-//   }
-// }
-
-// export default new UserRoutes().router;
