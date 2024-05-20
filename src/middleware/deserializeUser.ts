@@ -43,23 +43,3 @@ const deserializeUser = async (
 };
 
 export default deserializeUser;
-
-// const deserializeUser = (req: Request, res: Response, next: NextFunction) => {
-//   const accessToken = get(req, "headers.authorization", "").replace(
-//     /^Bearer\s/,
-//     ""
-//   );
-
-//   if (!accessToken) {
-//     return next();
-//   }
-
-//   const { decoded, expired } = verifyJwt(accessToken);
-
-//   if (decoded) {
-//     res.locals.user = decoded;
-//     return next();
-//   }
-// };
-
-// export default deserializeUser;
