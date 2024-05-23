@@ -81,6 +81,6 @@ export class User extends Model {
   @HasMany(() => Session, "userId")
   sessions!: Session[];
 
-  @HasMany(() => Hackerspace, "hackerspaceId")
+  @HasMany(() => Hackerspace, "userId")
   hackerspaces!: Hackerspace[];
 }
