@@ -10,6 +10,7 @@ import {
 import { Session } from "./session.model";
 import bcrypt from "bcrypt";
 import config from "config";
+import { Hackerspace } from "./hackerspace.model";
 
 @Table({
   tableName: User.USER_TABLE_NAME,
@@ -79,4 +80,7 @@ export class User extends Model {
 
   @HasMany(() => Session, "userId")
   sessions!: Session[];
+
+  @HasMany(() => Hackerspace, "hackerspaceId")
+  hackerspaces!: Hackerspace[];
 }
