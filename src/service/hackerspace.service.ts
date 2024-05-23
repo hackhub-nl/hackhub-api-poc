@@ -8,8 +8,43 @@ export async function createHackerspace(
   return await Hackerspace.create({ userId: userId, name: name, city: city });
 }
 
-export async function findHackerspace() {}
+export async function findHackerspace(hackerspaceId: number) {
+  return await Hackerspace.findOne({
+    where: {
+      id: hackerspaceId,
+    },
+  });
+}
 
-export async function findAndUpdateHackerspace() {}
+export async function findAndUpdateHackerspace(
+  hackerspaceId: number,
+  name: string,
+  city: string
+) {
+  const hspace = await Hackerspace.findOne({
+    where: {
+      id: hackerspaceId,
+    },
+  });
 
-export async function deleteHackerspace() {}
+  if (!hspace) {
+    throw new Error("Hackerspace is not found");
+  }
+  hspace.name = name;
+  hspace.city = city;
+
+  return await hspace.save();
+}
+
+export async function deleteHackerspace(hackerspaceId: number) {
+  const hspace = await Hackerspace.findOne({
+    where: {
+      id: hackerspaceId,
+    },
+  });
+
+  if (!hspace) {
+    throw new Error("Hackerspace is not found");
+  }
+  await hspace.destroy();
+}
