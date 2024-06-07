@@ -46,5 +46,5 @@ export async function deleteHackerspace(hackerspaceId: number) {
   if (!hspace) {
     throw new Error("Hackerspace is not found");
   }
-  await hspace.destroy();
+  return await hspace.destroy();
 }
