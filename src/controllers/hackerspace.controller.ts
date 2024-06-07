@@ -14,7 +14,15 @@ export async function getHackerspaceHandler(
 export async function createHackerspaceHandler(
   req: Request<{}, {}, CreateHackerspaceInput["body"]>,
   res: Response
-) {}
+) {
+  const userId = res.locals.user.id;
+
+  const body = req.body;
+
+  const hspace = await createHackerspace({ ...body, user: userId });
+
+  return res.send(hspace);
+}
 
 export async function updateHackerspaceHandler(
   req: Request<UpdateHackerspaceInput["params"]>,
