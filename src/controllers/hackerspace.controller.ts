@@ -1,20 +1,30 @@
 import { Request, Response } from "express";
+import {
+  CreateHackerspaceInput,
+  DeleteHackerspaceInput,
+  GetHackerspaceInput,
+  UpdateHackerspaceInput,
+} from "../schema/hackerspace.schema";
 
-export async function createHackerspaceHandler(req: Request, res: Response) {
-  
-}
+export async function getHackerspaceHandler(
+  req: Request<GetHackerspaceInput["params"]>,
+  res: Response
+) {}
 
-export async function updateHackerspaceHandler(req: Request, res: Response) {
-  
-}
+export async function createHackerspaceHandler(
+  req: Request<{}, {}, CreateHackerspaceInput["body"]>,
+  res: Response
+) {}
 
-export async function getHackerspaceHandler(req: Request, res: Response) {
-  
-}
+export async function updateHackerspaceHandler(
+  req: Request<UpdateHackerspaceInput["params"]>,
+  res: Response
+) {}
 
-export async function deleteHackerspaceHandler(req: Request, res: Response) {
-  
-}
+export async function deleteHackerspaceHandler(
+  req: Request<DeleteHackerspaceInput["params"]>,
+  res: Response
+) {}
 
 // import { Request, Response } from "express";
 // import { Hackerspace } from "../models/hackerspace.model";
