@@ -5,6 +5,11 @@ import {
   GetHackerspaceInput,
   UpdateHackerspaceInput,
 } from "../schema/hackerspace.schema";
+import {
+  createHackerspace,
+  findAndUpdateHackerspace,
+  findHackerspace,
+} from "../service/hackerspace.service";
 
 export async function getHackerspaceHandler(
   req: Request<GetHackerspaceInput["params"]>,
@@ -27,7 +32,32 @@ export async function createHackerspaceHandler(
 export async function updateHackerspaceHandler(
   req: Request<UpdateHackerspaceInput["params"]>,
   res: Response
-) {}
+) {
+  const userId = res.locals.user.id;
+
+  const hackerspaceId = req.params.id;
+  const update = req.body;
+
+  const hspace = await findHackerspace({ hackerspaceId });
+
+  if (!hspace) {
+    return res.sendStatus(404);
+  }
+
+  if (String(hspace.user) !== userId) {
+    return res.sendStatus(403);
+  }
+
+  const updatedHackerspace = await findAndUpdateHackerspace(
+    { hackerspaceId },
+    update,
+    {
+      new: true,
+    }
+  );
+
+  return res.send(updatedHackerspace);
+}
 
 export async function deleteHackerspaceHandler(
   req: Request<DeleteHackerspaceInput["params"]>,
