@@ -7,6 +7,7 @@ import {
 } from "../schema/hackerspace.schema";
 import {
   createHackerspace,
+  deleteHackerspace,
   findAndUpdateHackerspace,
   findHackerspace,
 } from "../service/hackerspace.service";
@@ -44,7 +45,7 @@ export async function updateHackerspaceHandler(
     return res.sendStatus(404);
   }
 
-  if (String(hspace.user) !== userId) {
+  if (hspace.user.id !== userId) {
     return res.sendStatus(403);
   }
 
@@ -60,106 +61,22 @@ export async function updateHackerspaceHandler(
 export async function deleteHackerspaceHandler(
   req: Request<DeleteHackerspaceInput["params"]>,
   res: Response
-) {}
+) {
+  const userId = res.locals.user.id;
 
-// import { Request, Response } from "express";
-// import { Hackerspace } from "../models/hackerspace.model";
-// import { HackerspaceRepo } from "../repositories/hackerspace.repo";
+  const hackerspaceId = req.params.id;
 
-// class HackerspaceController {
-//   async create(req: Request, res: Response) {
-//     try {
-//       const hspace = new Hackerspace();
-//       hspace.name = req.body.name;
-//       hspace.city = req.body.city;
+  const hspace = await findHackerspace(Number(hackerspaceId));
 
-//       await new HackerspaceRepo().save(hspace);
+  if (!hspace) {
+    return res.sendStatus(404);
+  }
 
-//       res.status(201).json({
-//         status: "Created!",
-//         message: "Successfully created hackerspace!",
-//       });
-//     } catch (err) {
-//       res.status(500).json({
-//         status: "Internal Server Error!",
-//         message: "Internal Server Error!",
-//       });
-//     }
-//   }
+  if (hspace.user.id !== userId) {
+    return res.sendStatus(403);
+  }
 
-//   async delete(req: Request, res: Response) {
-//     try {
-//       let id = parseInt(req.params["id"]);
-//       await new HackerspaceRepo().delete(id);
+  await deleteHackerspace(Number(hackerspaceId));
 
-//       res.status(200).json({
-//         status: "Ok!",
-//         message: "Successfully deleted hackerspace!",
-//       });
-//     } catch (err) {
-//       res.status(500).json({
-//         status: "Internal Server Error!",
-//         message: "Internal Server Error!",
-//       });
-//     }
-//   }
-
-//   async findById(req: Request, res: Response) {
-//     try {
-//       let id = parseInt(req.params["id"]);
-//       const hspace = await new HackerspaceRepo().retrieveById(id);
-
-//       res.status(200).json({
-//         status: "Ok!",
-//         message: "Successfully fetched hackerspace by id!",
-//         data: hspace,
-//       });
-//     } catch (err) {
-//       res.status(500).json({
-//         status: "Internal Server Error!",
-//         message: "Internal Server Error!",
-//       });
-//     }
-//   }
-
-//   async findAll(req: Request, res: Response) {
-//     try {
-//       const hspace = await new HackerspaceRepo().retrieveAll();
-
-//       res.status(200).json({
-//         status: "Ok!",
-//         message: "Successfully fetched all hackerspaces!",
-//         data: hspace,
-//       });
-//     } catch (err) {
-//       res.status(500).json({
-//         status: "Internal Server Error!",
-//         message: "Internal Server Error!",
-//       });
-//     }
-//   }
-
-//   async update(req: Request, res: Response) {
-//     try {
-//       let id = parseInt(req.params["id"]);
-//       const hspace = new Hackerspace();
-//       hspace.id = id;
-//       hspace.name = req.body.name;
-//       hspace.city = req.body.city;
-
-//       await new HackerspaceRepo().update(hspace);
-
-//       res.status(200).json({
-//         status: "Ok!",
-//         message: "Successfully updated hackerspace!",
-//       });
-//     } catch (err) {
-//       res.status(500).json({
-//         status: "Internal Server Error!",
-//         message: "Internal Server Error!",
-//       });
-//     }
-//   }
-// }
-
-// export default new HackerspaceController();
+  return res.sendStatus(200);
+}
