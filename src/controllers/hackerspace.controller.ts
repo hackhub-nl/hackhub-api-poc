@@ -15,7 +15,16 @@ import {
 export async function getHackerspaceHandler(
   req: Request<GetHackerspaceInput["params"]>,
   res: Response
-) {}
+) {
+  const hackerspaceId = req.params.id;
+  const hspace = await findHackerspace(Number(hackerspaceId));
+
+  if (!hspace) {
+    return res.sendStatus(404);
+  }
+
+  return res.send(hspace);
+}
 
 export async function createHackerspaceHandler(
   req: Request<{}, {}, CreateHackerspaceInput["body"]>,
@@ -63,7 +72,6 @@ export async function deleteHackerspaceHandler(
   res: Response
 ) {
   const userId = res.locals.user.id;
-
   const hackerspaceId = req.params.id;
 
   const hspace = await findHackerspace(Number(hackerspaceId));
