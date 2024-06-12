@@ -4,7 +4,7 @@ import {
   createHackerspaceSchema,
   updateHackerspaceSchema,
 } from "../schema/hackerspace.schema";
-import validate from "../middleware/validateResource";
+import validateResource from "../middleware/validateResource";
 import { auth } from "../middleware/auth";
 
 class HackerspaceRoutes extends BaseRoutes {
@@ -12,13 +12,13 @@ class HackerspaceRoutes extends BaseRoutes {
     this.router.post(
       "",
       auth,
-      validate(createHackerspaceSchema),
+      validateResource(createHackerspaceSchema),
       HackerspaceController.create
     );
     this.router.patch(
       "/:id",
       auth,
-      validate(updateHackerspaceSchema),
+      validateResource(updateHackerspaceSchema),
       HackerspaceController.update
     );
     this.router.delete("/:id", auth, HackerspaceController.delete);

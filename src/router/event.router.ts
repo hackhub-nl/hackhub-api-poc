@@ -1,6 +1,6 @@
 import BaseRoutes from "./base/base.router";
 import EventController from "../controllers/event.controller";
-import validate from "../middleware/validateResource";
+import validateResource from "../middleware/validateResource";
 import { createEventSchema, updateEventSchema } from "../schema/event.schema";
 import { auth } from "../middleware/auth";
 
@@ -9,13 +9,13 @@ class EventRoutes extends BaseRoutes {
     this.router.post(
       "",
       auth,
-      validate(createEventSchema),
+      validateResource(createEventSchema),
       EventController.create
     );
     this.router.patch(
       "/:id",
       auth,
-      validate(updateEventSchema),
+      validateResource(updateEventSchema),
       EventController.update
     );
     this.router.delete("/:id", auth, EventController.delete);
