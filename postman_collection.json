@@ -1,0 +1,472 @@
+{
+	"info": {
+		"_postman_id": "32037556-21a56407-ac82-466c-aae5-9ab0eda7ac19",
+		"name": "hackerspaces-api-demo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Register User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"{{email}}\",\n    \"password\": \"{{password}}\",\n    \"passwordConfirmation\": \"{{password}}\",\n    \"name\": \"{{name}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{endpoint}}/api/users",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login Session",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"accessToken\", jsonData.accessToken);",
+									"postman.setEnvironmentVariable(\"refreshToken\", jsonData.refreshToken);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"{{email}}\",\n    \"password\": \"{{password}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{endpoint}}/api/sessions",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"api",
+								"sessions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Sessions",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"",
+									"const newAccessToken = responseHeaders['x-access-token']",
+									"",
+									"if(newAccessToken){",
+									"    console.log('Set new access token')",
+									"postman.setEnvironmentVariable(\"accessToken\", newAccessToken);",
+									"}",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-refresh",
+								"value": "{{refreshToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{endpoint}}/api/sessions",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"api",
+								"sessions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Session",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const newAccessToken = responseHeaders['x-access-token']",
+									"",
+									"if(newAccessToken){",
+									"    console.log('Set new access token')",
+									"postman.setEnvironmentVariable(\"accessToken\", newAccessToken);",
+									"}",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-refresh",
+								"value": "{{refreshToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{endpoint}}/api/sessions",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"api",
+								"sessions"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Hackerspace",
+			"item": [
+				{
+					"name": "Create Hackerspace",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"id\", jsonData.id);",
+									"",
+									"",
+									"const newAccessToken = responseHeaders['x-access-token']",
+									"",
+									"if(newAccessToken){",
+									"    console.log('Set new access token')",
+									"postman.setEnvironmentVariable(\"accessToken\", newAccessToken);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-refresh",
+								"value": "{{refreshToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Hack42\",\n    \"city\": \"Arnhem\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{endpoint}}/api/hackerspaces",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"api",
+								"hackerspaces"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Hackerspace",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{endpoint}}/api/hackerspaces/{{id}}",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"api",
+								"hackerspaces",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Hackerspace",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const newAccessToken = responseHeaders['x-access-token']",
+									"",
+									"if(newAccessToken){",
+									"    console.log('Set new access token')",
+									"postman.setEnvironmentVariable(\"accessToken\", newAccessToken);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-refresh",
+								"value": "{{refreshToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Hack42Updated\",\n    \"city\": \"ArnhemUpdated\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{endpoint}}/api/hackerspaces/{{id}}",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"api",
+								"hackerspaces",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Hackerspace",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const newAccessToken = responseHeaders['x-access-token']",
+									"",
+									"if(newAccessToken){",
+									"    console.log('Set new access token')",
+									"postman.setEnvironmentVariable(\"accessToken\", newAccessToken);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-refresh",
+								"value": "{{refreshToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{endpoint}}/api/hackerspaces/{{id}}",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"api",
+								"hackerspaces",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{accessToken}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "email",
+			"value": "test@test.com"
+		},
+		{
+			"key": "password",
+			"value": "Password123"
+		},
+		{
+			"key": "name",
+			"value": "John Doe"
+		},
+		{
+			"key": "accessToken",
+			"value": "<accessToken will be set when you create a session>"
+		},
+		{
+			"key": "refreshToken",
+			"value": "<refreshToken will be set when you create a session>"
+		},
+		{
+			"key": "endpoint",
+			"value": "http://localhost:7000"
+		}
+	]
+}
