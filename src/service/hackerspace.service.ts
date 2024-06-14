@@ -5,7 +5,12 @@ export async function createHackerspace(
   name: string,
   city: string
 ) {
-  return await Hackerspace.create({ userId: userId, name: name, city: city });
+  const hspace = await Hackerspace.create({
+    userId: userId,
+    name: name,
+    city: city,
+  });
+  return JSON.parse(JSON.stringify(hspace));
 }
 
 export async function findHackerspace(hackerspaceId: number) {
