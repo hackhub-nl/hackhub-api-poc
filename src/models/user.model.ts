@@ -8,9 +8,9 @@ import {
   Table,
 } from "sequelize-typescript";
 import { Session } from "./session.model";
+import { Hackerspace } from "./hackerspace.model";
 import bcrypt from "bcrypt";
 import config from "config";
-import { Hackerspace } from "./hackerspace.model";
 
 @Table({
   tableName: User.USER_TABLE_NAME,
