@@ -37,6 +37,6 @@ export const deleteHackerspaceSchema = object({
 });
 
 export type GetHackerspaceInput = TypeOf<typeof getHackerspaceSchema>;
-export type CreateHackerspaceInput  = TypeOf<typeof createHackerspaceSchema>;
-export type UpdateHackerspaceInput  = TypeOf<typeof updateHackerspaceSchema>;
+export type CreateHackerspaceInput = TypeOf<typeof createHackerspaceSchema>;
+export type UpdateHackerspaceInput = TypeOf<typeof updateHackerspaceSchema>;
 export type DeleteHackerspaceInput = TypeOf<typeof deleteHackerspaceSchema>;

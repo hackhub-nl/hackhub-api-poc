@@ -1,5 +1,20 @@
 import { Hackerspace } from "../models/hackerspace.model";
 
+export async function findHackerspace(hackerspaceId: string) {
+  try {
+    const hspace = await Hackerspace.findOne({
+      where: {
+        id: hackerspaceId,
+      },
+    });
+    return JSON.parse(JSON.stringify(hspace));
+  } catch (error) {
+    throw new Error(
+      `Failed to retrieve hackerspace with hackerspaceId: ${hackerspaceId}`
+    );
+  }
+}
+
 export async function createHackerspace(
   userId: number,
   name: string,
@@ -11,14 +26,6 @@ export async function createHackerspace(
     city: city,
   });
   return JSON.parse(JSON.stringify(hspace));
-}
-
-export async function findHackerspace(hackerspaceId: number) {
-  return await Hackerspace.findOne({
-    where: {
-      id: hackerspaceId,
-    },
-  });
 }
 
 export async function findAndUpdateHackerspace(
