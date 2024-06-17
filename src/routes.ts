@@ -43,7 +43,7 @@ function routes(app: Express) {
   app.delete("/api/sessions", requireUser, deleteSessionHandler);
 
   app.get(
-    "/api/hackerspaces",
+    "/api/hackerspaces/:id",
     validateResource(getHackerspaceSchema),
     getHackerspaceHandler
   );
@@ -55,13 +55,13 @@ function routes(app: Express) {
   );
 
   app.put(
-    "/api/hackerspaces",
+    "/api/hackerspaces/:id",
     [requireUser, validateResource(updateHackerspaceSchema)],
     updateHackerspaceHandler
   );
 
   app.delete(
-    "/api/hackerspaces",
+    "/api/hackerspaces/:id",
     [requireUser, validateResource(deleteHackerspaceSchema)],
     deleteHackerspaceHandler
   );
