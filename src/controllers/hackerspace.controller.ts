@@ -42,7 +42,7 @@ export async function updateHackerspaceHandler(
   req: Request<UpdateHackerspaceInput["params"]>,
   res: Response
 ) {
-  const userId = res.locals.user.id;
+  const userId = res.locals.user.dataValues.id;
 
   const hackerspaceId = req.params.id;
   const body = req.body;
@@ -53,7 +53,7 @@ export async function updateHackerspaceHandler(
     return res.sendStatus(404);
   }
 
-  if (hspace.user.id !== userId) {
+  if (hspace.userId !== userId) {
     return res.sendStatus(403);
   }
 
