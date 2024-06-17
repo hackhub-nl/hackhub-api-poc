@@ -6,7 +6,8 @@
   "author": "ivanab",
   "license": "MIT",
   "scripts": {
-    "dev": "ts-node-dev --respawn --transpile-only src/app.ts"
+    "dev": "ts-node-dev --respawn --transpile-only src/app.ts",
+    "test": "jest"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",
