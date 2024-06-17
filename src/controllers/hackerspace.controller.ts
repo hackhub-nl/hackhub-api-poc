@@ -17,7 +17,7 @@ export async function getHackerspaceHandler(
   res: Response
 ) {
   const hackerspaceId = req.params.id;
-  const hspace = await findHackerspace(Number(hackerspaceId));
+  const hspace = await findHackerspace(hackerspaceId);
 
   if (!hspace) {
     return res.sendStatus(404);
@@ -47,7 +47,7 @@ export async function updateHackerspaceHandler(
   const hackerspaceId = req.params.id;
   const body = req.body;
 
-  const hspace = await findHackerspace(Number(hackerspaceId));
+  const hspace = await findHackerspace(hackerspaceId);
 
   if (!hspace) {
     return res.sendStatus(404);
@@ -71,11 +71,11 @@ export async function deleteHackerspaceHandler(
   res: Response
 ) {
   const userId = res.locals.user.dataValues.id;
-  
-  const hackerspaceId = req.params.id;
-  console.log("hackerspaceId: " + hackerspaceId)
 
-  const hspace = await findHackerspace(Number(hackerspaceId));
+  const hackerspaceId = req.params.id;
+  console.log("hackerspaceId: " + hackerspaceId);
+
+  const hspace = await findHackerspace(hackerspaceId);
 
   if (!hspace) {
     return res.sendStatus(404);
