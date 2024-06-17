@@ -81,7 +81,7 @@ export async function deleteHackerspaceHandler(
     return res.sendStatus(404);
   }
 
-  if (hspace.user.id !== userId) {
+  if (hspace.userId !== userId) {
     return res.sendStatus(403);
   }
 
