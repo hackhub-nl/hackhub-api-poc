@@ -1,7 +1,7 @@
 # hackerspaces-api-demo  
 
 ### Instructions:
-- Install all dependencies:    
+- Install dependencies:    
 ```
 npm install
 ```            
@@ -15,5 +15,7 @@ npm install
 npm run dev
 ```          
           
-### License:     
-[MIT](/LICENSE)
+- Run tests:    
+```
+npm run test
+```  
