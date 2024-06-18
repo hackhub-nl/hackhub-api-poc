@@ -61,7 +61,6 @@ describe("hackerspace", () => {
 
     describe("given the hackerspace does exist", () => {
       it("should return a 200 status and the hackerspace", async () => {
-        
         const hspace = await createHackerspace(1, "Hack42", "Arnhem");
 
         const { body, statusCode } = await supertest(app).get(
@@ -71,6 +70,16 @@ describe("hackerspace", () => {
         expect(statusCode).toBe(200);
 
         expect(body.id).toBe(hspace.id);
+      });
+    });
+  });
+
+  describe("create hackerspace route", () => {
+    describe("given the user is not logged in", () => {
+      it("should return a 403", async () => {
+        const { statusCode } = await supertest(app).post("/api/hackerspaces");
+
+        expect(statusCode).toBe(403);
       });
     });
   });
