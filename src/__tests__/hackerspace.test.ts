@@ -8,6 +8,22 @@ import { User } from "../models/user.model";
 import { Session } from "../models/session.model";
 import logger from "../utils/logger";
 import { createHackerspace } from "../service/hackerspace.service";
+import { signJwt } from "../utils/jwt.utils";
+import { number } from "zod";
+
+const userPayload = {
+  id: 1,
+  email: "apple@test.com",
+  password: "Password123",
+  passwordConfirmation: "Password123",
+  name: "John Doe",
+};
+
+const hackerspacePayload = {
+  userId: 1,
+  name: "Space2",
+  city: "City2",
+};
 
 describe("hackerspace", () => {
   let mockedSequelize: Sequelize;
@@ -80,6 +96,28 @@ describe("hackerspace", () => {
         const { statusCode } = await supertest(app).post("/api/hackerspaces");
 
         expect(statusCode).toBe(403);
+      });
+    });
+
+    describe("given the user is logged in", () => {
+      it("should return a 200 and create the hackerspace", async () => {
+        const jwt = signJwt(userPayload);
+
+        const { statusCode, body } = await supertest(app)
+          .post("/api/hackerspaces")
+          .set("Authorization", `Bearer ${jwt}`)
+          .send(hackerspacePayload);
+
+        expect(statusCode).toBe(200);
+
+        expect(body).toEqual({
+          id: expect.any(Number),
+          createdAt: expect.any(String),
+          updatedAt: expect.any(String),
+          userId: 1,
+          name: "Space2",
+          city: "City2",
+        });
       });
     });
   });
