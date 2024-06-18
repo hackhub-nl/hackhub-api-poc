@@ -6,7 +6,7 @@
   "author": "ivanab",
   "license": "MIT",
   "scripts": {
-    "dev": "ts-node-dev --respawn --transpile-only src/app.ts",
+    "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
     "test": "jest"
   },
   "dependencies": {
