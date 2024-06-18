@@ -30,7 +30,7 @@ export async function createHackerspaceHandler(
   req: Request<{}, {}, CreateHackerspaceInput["body"]>,
   res: Response
 ) {
-  const userId = res.locals.user.dataValues.id;
+  const userId = res.locals.user.id;
   const body = req.body;
 
   const hspace = await createHackerspace(userId, body.name, body.city);
@@ -42,7 +42,7 @@ export async function updateHackerspaceHandler(
   req: Request<UpdateHackerspaceInput["params"]>,
   res: Response
 ) {
-  const userId = res.locals.user.dataValues.id;
+  const userId = res.locals.user.id;
 
   const hackerspaceId = req.params.id;
   const body = req.body;
@@ -70,7 +70,7 @@ export async function deleteHackerspaceHandler(
   req: Request<DeleteHackerspaceInput["params"]>,
   res: Response
 ) {
-  const userId = res.locals.user.dataValues.id;
+  const userId = res.locals.user.id;
 
   const hackerspaceId = req.params.id;
   console.log("hackerspaceId: " + hackerspaceId);
