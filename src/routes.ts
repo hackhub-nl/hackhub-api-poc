@@ -1,4 +1,4 @@
-import { Express, Request, Response } from "express";
+import express, { Request, Response } from "express";
 import { registerUserSchema } from "./schema/user.schema";
 import validateResource from "./middleware/validateResource";
 import { registerUserHandler } from "./controllers/user.controller";
@@ -24,7 +24,7 @@ import {
 
 // curl http://localhost:port/healthcheck
 
-function routes(app: Express) {
+function routes(app: express.Application) {
   app.get("/healthcheck", (req: Request, res: Response) => res.sendStatus(200));
 
   app.post(
