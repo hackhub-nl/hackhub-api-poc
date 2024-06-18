@@ -7,6 +7,7 @@ import { Event } from "../models/event.model";
 import { User } from "../models/user.model";
 import { Session } from "../models/session.model";
 import logger from "../utils/logger";
+import { createHackerspace } from "../service/hackerspace.service";
 
 describe("hackerspace", () => {
   let mockedSequelize: Sequelize;
@@ -55,6 +56,21 @@ describe("hackerspace", () => {
         const id = "123";
 
         await supertest(app).get(`/api/hackerspaces/${id}`).expect(404);
+      });
+    });
+
+    describe("given the hackerspace does exist", () => {
+      it("should return a 200 status and the hackerspace", async () => {
+        
+        const hspace = await createHackerspace(1, "Hack42", "Arnhem");
+
+        const { body, statusCode } = await supertest(app).get(
+          `/api/hackerspaces/${hspace.id}`
+        );
+
+        expect(statusCode).toBe(200);
+
+        expect(body.id).toBe(hspace.id);
       });
     });
   });
