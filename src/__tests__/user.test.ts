@@ -1,10 +1,7 @@
 import supertest from "supertest";
-// import createServer from "../utils/server";
 import * as UserService from "../service/user.service";
 import { app } from "../app";
 // import { User } from "../models/user.model";
-
-// const app = createServer();
 
 const userPayload = {
   id: 1,
@@ -27,6 +24,7 @@ describe("user", () => {
           .spyOn(UserService, "registerUser")
           // @ts-ignore
           .mockReturnValueOnce(userPayload);
+
         const { statusCode, body } = await supertest(app)
           .post("/api/users")
           .send(userInput);
@@ -49,6 +47,7 @@ describe("user", () => {
           .spyOn(UserService, "registerUser")
           // @ts-ignore
           .mockReturnValueOnce(userPayload);
+
         const { statusCode } = await supertest(app)
           .post("/api/users")
           .send({ ...userInput, passwordConfirmation: "does not match" });
@@ -60,7 +59,19 @@ describe("user", () => {
     });
 
     describe("given the user service throws", () => {
-      it("should return a 409 error", async () => {});
+      it("should return a 409 error", async () => {
+        const createUserServiceMock = jest
+          .spyOn(UserService, "registerUser")
+          .mockRejectedValue("rejected!");
+
+        const { statusCode } = await supertest(app)
+          .post("/api/users")
+          .send(userInput);
+
+        expect(statusCode).toBe(409);
+
+        expect(createUserServiceMock).toHaveBeenCalled();
+      });
     });
 
     describe("create user session", () => {
