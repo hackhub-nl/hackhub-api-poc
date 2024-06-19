@@ -31,8 +31,6 @@ describe("user", () => {
           .post("/api/users")
           .send(userInput);
 
-        console.log(statusCode);
-        console.log(body);
         expect(statusCode).toBe(200);
 
         expect(body).toEqual(userPayload);
@@ -46,7 +44,19 @@ describe("user", () => {
     });
 
     describe("given the passwords do not match", () => {
-      it("should return a 400", async () => {});
+      it("should return a 400", async () => {
+        const createUserServiceMock = jest
+          .spyOn(UserService, "registerUser")
+          // @ts-ignore
+          .mockReturnValueOnce(userPayload);
+        const { statusCode } = await supertest(app)
+          .post("/api/users")
+          .send({ ...userInput, passwordConfirmation: "does not match" });
+
+        expect(statusCode).toBe(400);
+
+        expect(createUserServiceMock).not.toHaveBeenCalled();
+      });
     });
 
     describe("given the user service throws", () => {
