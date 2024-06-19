@@ -36,5 +36,25 @@ describe("user", () => {
         //         expect(createUserServiceMock).toHaveBeenCalledWith(userInput);
       });
     });
+
+    describe("given the passwords do not match", () => {
+      it ("should return a 400", async () => {
+
+      })
+    })
+
+    describe("given the user service throws", () => {
+      it("should return a 409 error", () => {
+
+      })
+    })
+
+    describe("create user session", () => {
+      describe("given the username and password are valid", () => {
+        it("should return a signed accessToken & refresh token", () => {
+          
+        })
+      })
+    })
   });
 });

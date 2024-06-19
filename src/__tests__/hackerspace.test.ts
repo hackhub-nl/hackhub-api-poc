@@ -9,7 +9,6 @@ import { Session } from "../models/session.model";
 import logger from "../utils/logger";
 import { createHackerspace } from "../service/hackerspace.service";
 import { signJwt } from "../utils/jwt.utils";
-import { number } from "zod";
 
 const userPayload = {
   id: 1,
