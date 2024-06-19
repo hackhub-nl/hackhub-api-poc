@@ -1,7 +1,8 @@
 import supertest from "supertest";
 import * as UserService from "../service/user.service";
+import * as SessionService from "../service/session.service";
 import { app } from "../app";
-// import { User } from "../models/user.model";
+import { loginUserSessionHandler } from "../controllers/session.controller";
 
 const userPayload = {
   id: 1,
@@ -14,6 +15,14 @@ const userInput = {
   name: "John Doe",
   password: "Password123",
   passwordConfirmation: "Password123",
+};
+
+const sessionPayload = {
+  userId: 1,
+  valid: true,
+  userAgent: "PostmanRuntime/7.39.0",
+  createdAt: new Date("2024-06-18 15:41:55.856+02"),
+  updatedAt: new Date("2024-06-18 15:41:55.856+02"),
 };
 
 describe("user", () => {
@@ -62,7 +71,7 @@ describe("user", () => {
       it("should return a 409 error", async () => {
         const createUserServiceMock = jest
           .spyOn(UserService, "registerUser")
-          .mockRejectedValue("rejected!");
+          .mockRejectedValueOnce("rejected!");
 
         const { statusCode } = await supertest(app)
           .post("/api/users")
@@ -76,7 +85,41 @@ describe("user", () => {
 
     describe("create user session", () => {
       describe("given the username and password are valid", () => {
-        it("should return a signed accessToken & refresh token", async () => {});
+        it("should return a signed accessToken & refresh token", async () => {
+          jest
+            .spyOn(UserService, "validatePassword")
+            // @ts-ignore
+            .mockReturnValue(userPayload);
+
+          jest
+            .spyOn(SessionService, "loginSession")
+            // @ts-ignore
+            .mockReturnValue(sessionPayload);
+
+          const req = {
+            get: () => {
+              return "a user agent";
+            },
+            body: {
+              email: "apple@test.com",
+              password: "Password123",
+            },
+          };
+
+          const send = jest.fn();
+
+          const res = {
+            send,
+          };
+
+          // @ts-ignore
+          await loginUserSessionHandler(req, res);
+
+          expect(send).toHaveBeenCalledWith({
+            accessToken: expect.any(String),
+            refreshToken: expect.any(String),
+          });
+        });
       });
     });
   });
