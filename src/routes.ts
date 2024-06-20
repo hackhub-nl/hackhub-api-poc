@@ -18,6 +18,7 @@ import {
 import {
   createHackerspaceHandler,
   deleteHackerspaceHandler,
+  getAllHackerspacesHandler,
   getHackerspaceHandler,
   updateHackerspaceHandler,
 } from "./controllers/hackerspace.controller";
@@ -41,6 +42,8 @@ function routes(app: express.Application) {
 
   app.get("/api/sessions", requireUser, getUserSessionsHandler);
   app.delete("/api/sessions", requireUser, deleteSessionHandler);
+
+  app.get("/api/hackerspaces", getAllHackerspacesHandler);
 
   app.get(
     "/api/hackerspaces/:id",
