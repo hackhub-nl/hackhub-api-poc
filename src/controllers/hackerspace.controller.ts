@@ -10,7 +10,14 @@ import {
   deleteHackerspace,
   findAndUpdateHackerspace,
   findHackerspace,
+  getAllHackerspaces,
 } from "../service/hackerspace.service";
+
+export async function getAllHackerspacesHandler(req: Request, res: Response) {
+  const hackerspaces = await getAllHackerspaces();
+  
+  return res.send(hackerspaces)
+}
 
 export async function getHackerspaceHandler(
   req: Request<GetHackerspaceInput["params"]>,
