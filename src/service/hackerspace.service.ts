@@ -1,5 +1,13 @@
 import { Hackerspace } from "../models/hackerspace.model";
 
+export async function getAllHackerspaces() {
+  try {
+    return await Hackerspace.findAll();
+  } catch (error) {
+    throw new Error(`Failed to retrieve all hackerspaces`);
+  }
+}
+
 export async function findHackerspace(hackerspaceId: string) {
   try {
     const hspace = await Hackerspace.findOne({
