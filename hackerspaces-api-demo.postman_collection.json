@@ -1,8 +1,9 @@
 {
 	"info": {
-		"_postman_id": "32037556-21a56407-ac82-466c-aae5-9ab0eda7ac19",
+		"_postman_id": "aec8e714-2c8b-496c-9f9a-cbb03d3e527d",
 		"name": "hackerspaces-api-demo",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32037556"
 	},
 	"item": [
 		{
@@ -15,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"{{email}}\",\n    \"password\": \"{{password}}\",\n    \"passwordConfirmation\": \"{{password}}\",\n    \"name\": \"{{name}}\"\n}",
+							"raw": "{\n    \"email\": \"apple2@test.com\",\n    \"password\": \"{{password}}\",\n    \"passwordConfirmation\": \"{{password}}\",\n    \"name\": \"{{name}}\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -186,6 +187,56 @@
 			"name": "Hackerspace",
 			"item": [
 				{
+					"name": "Get Hackerspaces",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Get Hackerspace",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{endpoint}}/api/hackerspaces/{{id}}",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"api",
+								"hackerspaces",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Create Hackerspace",
 					"event": [
 						{
@@ -243,48 +294,6 @@
 							"path": [
 								"api",
 								"hackerspaces"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get Hackerspace",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{endpoint}}/api/hackerspaces/{{id}}",
-							"host": [
-								"{{endpoint}}"
-							],
-							"path": [
-								"api",
-								"hackerspaces",
-								"{{id}}"
 							]
 						}
 					},
@@ -364,7 +373,8 @@
 									"postman.setEnvironmentVariable(\"accessToken\", newAccessToken);",
 									"}"
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -389,7 +399,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "",
+							"raw": "{\n    \"title\": \"A post title\",\n    \"body\": \"Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -397,14 +407,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{endpoint}}/api/hackerspaces/{{id}}",
+							"raw": "{{endpoint}}/api/hackerspaces/1",
 							"host": [
 								"{{endpoint}}"
 							],
 							"path": [
 								"api",
 								"hackerspaces",
-								"{{id}}"
+								"1"
 							]
 						}
 					},
