@@ -18,6 +18,8 @@ export class Hackerspace extends Model {
   public static HACKERSPACE_ID = "id" as string;
   public static HACKERSPACE_NAME = "name" as string;
   public static HACKERSPACE_CITY = "city" as string;
+  public static HACKERSPACE_PROVINCE = "province" as string;
+  public static HACKERSPACE_WEBSITE = "website" as string;
 
   @Column({
     type: DataType.INTEGER,
@@ -38,6 +40,18 @@ export class Hackerspace extends Model {
     field: Hackerspace.HACKERSPACE_CITY,
   })
   city!: string;
+
+  @Column({
+    type: DataType.STRING(100),
+    field: Hackerspace.HACKERSPACE_PROVINCE,
+  })
+  province!: string;
+
+  @Column({
+    type: DataType.STRING(100),
+    field: Hackerspace.HACKERSPACE_WEBSITE,
+  })
+  website!: string;
 
   @ForeignKey(() => User)
   @Column({
