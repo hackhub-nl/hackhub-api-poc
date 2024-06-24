@@ -1,19 +1,19 @@
-# hackerspaces-api-demo  
+# hackhub-api-poc  
 
 ### Instructions:
-- Install dependencies:    
+Install dependencies:    
 ```
 npm install
 ```            
       
-- Replace ```.env.example``` with ```.env``` and set values.         
+Replace ```.env.example``` with ```.env``` and set values.         
         
-- Start the server: 
+Start the server: 
 ```
 npm run dev
 ```          
           
-- Run tests:    
+Run tests:    
 ```
 npm test
 ```  
