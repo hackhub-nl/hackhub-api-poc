@@ -30,7 +30,12 @@ export async function getHackerspaceHandler(
     return res.sendStatus(404);
   }
 
-  return res.send({ name: hspace?.name, city: hspace?.city });
+  return res.send({
+    name: hspace?.name,
+    city: hspace?.city,
+    province: hspace?.province,
+    website: hspace?.website,
+  });
 }
 
 export async function createHackerspaceHandler(
@@ -40,7 +45,13 @@ export async function createHackerspaceHandler(
   const userId = res.locals.user.id;
   const body = req.body;
 
-  const hspace = await createHackerspace(userId, body.name, body.city);
+  const hspace = await createHackerspace(
+    userId,
+    body.name,
+    body.city,
+    body.province,
+    body.website
+  );
 
   return res.send(hspace);
 }
@@ -67,7 +78,9 @@ export async function updateHackerspaceHandler(
   const updatedHackerspace = await findAndUpdateHackerspace(
     Number(hackerspaceId),
     body.name,
-    body.city
+    body.city,
+    body.province,
+    body.website
   );
 
   return res.send(updatedHackerspace);
