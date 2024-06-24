@@ -1,4 +1,4 @@
-import { object, string, TypeOf } from "zod";
+import { number, object, string, TypeOf } from "zod";
 
 const payload = {
   body: object({
@@ -8,6 +8,8 @@ const payload = {
     city: string({
       required_error: "City is required",
     }).min(0, { message: "City must contain at least one character" }),
+    province: string(),
+    website: string(),
   }),
 };
 
