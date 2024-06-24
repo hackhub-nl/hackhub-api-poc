@@ -1,8 +1,16 @@
+import { omit } from "lodash";
 import { Hackerspace } from "../models/hackerspace.model";
 
 export async function getAllHackerspaces() {
   try {
-    return await Hackerspace.findAll();
+    const hackerspaces = await Hackerspace.findAll();
+
+    const res = hackerspaces.map((h) => ({
+      name: h.name,
+      city: h.city,
+    }));
+
+    return res;
   } catch (error) {
     throw new Error(`Failed to retrieve all hackerspaces`);
   }
@@ -15,7 +23,13 @@ export async function findHackerspace(hackerspaceId: string) {
         id: hackerspaceId,
       },
     });
-    return JSON.parse(JSON.stringify(hspace));
+    return omit(
+      JSON.parse(JSON.stringify(hspace)),
+      "id",
+      "userId",
+      "createdAt",
+      "updatedAt"
+    );
   } catch (error) {
     throw new Error(
       `Failed to retrieve hackerspace with hackerspaceId: ${hackerspaceId}`

@@ -15,8 +15,8 @@ import {
 
 export async function getAllHackerspacesHandler(req: Request, res: Response) {
   const hackerspaces = await getAllHackerspaces();
-  
-  return res.send(hackerspaces)
+
+  return res.send(hackerspaces);
 }
 
 export async function getHackerspaceHandler(
