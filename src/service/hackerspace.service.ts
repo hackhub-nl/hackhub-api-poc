@@ -23,13 +23,8 @@ export async function findHackerspace(hackerspaceId: string) {
         id: hackerspaceId,
       },
     });
-    return omit(
-      JSON.parse(JSON.stringify(hspace)),
-      "id",
-      "userId",
-      "createdAt",
-      "updatedAt"
-    );
+
+    return JSON.parse(JSON.stringify(hspace));
   } catch (error) {
     throw new Error(
       `Failed to retrieve hackerspace with hackerspaceId: ${hackerspaceId}`
