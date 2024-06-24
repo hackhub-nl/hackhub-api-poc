@@ -30,7 +30,7 @@ export async function getHackerspaceHandler(
     return res.sendStatus(404);
   }
 
-  return res.send(hspace);
+  return res.send({ name: hspace?.name, city: hspace?.city });
 }
 
 export async function createHackerspaceHandler(
