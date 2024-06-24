@@ -8,6 +8,8 @@ export async function getAllHackerspaces() {
     const res = hackerspaces.map((h) => ({
       name: h.name,
       city: h.city,
+      province: h.province,
+      website: h.website,
     }));
 
     return res;
@@ -35,12 +37,16 @@ export async function findHackerspace(hackerspaceId: string) {
 export async function createHackerspace(
   userId: number,
   name: string,
-  city: string
+  city: string,
+  province: string,
+  website: string
 ) {
   const hspace = await Hackerspace.create({
     userId: userId,
     name: name,
     city: city,
+    province: province,
+    website: website,
   });
   return JSON.parse(JSON.stringify(hspace));
 }
@@ -48,7 +54,9 @@ export async function createHackerspace(
 export async function findAndUpdateHackerspace(
   hackerspaceId: number,
   name: string,
-  city: string
+  city: string,
+  province: string,
+  website: string
 ) {
   const hspace = await Hackerspace.findOne({
     where: {
@@ -61,6 +69,8 @@ export async function findAndUpdateHackerspace(
   }
   hspace.name = name;
   hspace.city = city;
+  hspace.province = province;
+  hspace.website = website;
 
   return await hspace.save();
 }
