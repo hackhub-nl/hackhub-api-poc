@@ -13,7 +13,7 @@ Start the server:
 npm run dev
 ```          
           
-Run tests:    
+Run all tests:    
 ```
 npm test
 ```  
