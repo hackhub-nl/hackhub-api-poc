@@ -2,7 +2,7 @@
   "name": "hackhub-api-poc",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "https://github.com/hackhub-nl/hackerspaces-api-demo.git",
+  "repository": "https://github.com/hackhub-nl/hackhub-api-poc.git",
   "author": "ivanab",
   "license": "MIT",
   "scripts": {
