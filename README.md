@@ -1,6 +1,11 @@
 # hackhub-api-poc  
 
+### Requirements
+PostgreSQL installed.    
+
 ### Instructions:
+Create database in PostgreSQL.     
+     
 Install dependencies:    
 ```
 npm install
