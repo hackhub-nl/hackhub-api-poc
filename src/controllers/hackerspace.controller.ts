@@ -93,7 +93,6 @@ export async function deleteHackerspaceHandler(
   const userId = res.locals.user.id;
 
   const hackerspaceId = req.params.id;
-  console.log("hackerspaceId: " + hackerspaceId);
 
   const hspace = await findHackerspace(hackerspaceId);
 

@@ -22,6 +22,19 @@ import {
   getHackerspaceHandler,
   updateHackerspaceHandler,
 } from "./controllers/hackerspace.controller";
+import {
+  createHackerEventHandler,
+  deleteHackerEventHandler,
+  getAllHackerEventsHandler,
+  getHackerEventHandler,
+  updateHackerEventHandler,
+} from "./controllers/hackerEvent.controller";
+import {
+  createHackerEventSchema,
+  deleteHackerEventSchema,
+  getHackerEventSchema,
+  updateHackerEventSchema,
+} from "./schema/hackerEvent.schema";
 
 // curl http://localhost:port/healthcheck
 
@@ -67,6 +80,33 @@ function routes(app: express.Application) {
     "/api/hackerspaces/:id",
     [requireUser, validateResource(deleteHackerspaceSchema)],
     deleteHackerspaceHandler
+  );
+  //
+
+  app.get("/api/hackerevents", getAllHackerEventsHandler);
+
+  app.get(
+    "/api/hackerevents/:id",
+    validateResource(getHackerEventSchema),
+    getHackerEventHandler
+  );
+
+  app.post(
+    "/api/hackerevents",
+    [requireUser, validateResource(createHackerEventSchema)],
+    createHackerEventHandler
+  );
+
+  app.put(
+    "/api/hackerevents/:id",
+    [requireUser, validateResource(updateHackerEventSchema)],
+    updateHackerEventHandler
+  );
+
+  app.delete(
+    "/api/hackerevents/:id",
+    [requireUser, validateResource(deleteHackerEventSchema)],
+    deleteHackerEventHandler
   );
 }
 

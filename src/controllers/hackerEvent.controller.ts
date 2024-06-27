@@ -1,12 +1,16 @@
 import { Request, Response } from "express";
 import {
   createHackerEvent,
+  deleteHackerEvent,
+  findAndUpdateHackerEvent,
   findHackerEvent,
   getAllHackerEvents,
 } from "../service/hackerEvent.service";
 import {
   CreateHackerEventInput,
+  DeleteHackerEventInput,
   GetHackerEventInput,
+  UpdateHackerEventInput,
 } from "../schema/hackerEvent.schema";
 import { HackerEvent } from "../models/hackerEvent.model";
 
@@ -41,38 +45,44 @@ export async function createHackerEventHandler(
 
   const hackerEvent = await createHackerEvent(body.name, body.description);
 
-  return JSON.parse(JSON.stringify(hackerEvent));
+  return res.send(hackerEvent);
 }
 
-export async function findAndUpdateHackerEvent(
-  hackerEventId: number,
-  name: string,
-  description: string
+export async function updateHackerEventHandler(
+  req: Request<UpdateHackerEventInput["params"]>,
+  res: Response
 ) {
-  const hackerEvent = await HackerEvent.findOne({
-    where: {
-      id: hackerEventId,
-    },
-  });
+  const hackerEventId = req.params.id;
+  const body = req.body;
+
+  const hackerEvent = await findHackerEvent(hackerEventId);
 
   if (!hackerEvent) {
-    throw new Error("Hacker event is not found");
+    return res.sendStatus(404);
   }
-  hackerEvent.name = name;
-  hackerEvent.description = description;
 
-  return await hackerEvent.save();
+  const updatedHackerEvent = await findAndUpdateHackerEvent(
+    Number(hackerEventId),
+    body.name,
+    body.description
+  );
+
+  return res.send(updatedHackerEvent);
 }
 
-export async function deleteHackerEvent(hackerEventId: number) {
-  const hackerEvent = await HackerEvent.findOne({
-    where: {
-      id: hackerEventId,
-    },
-  });
+export async function deleteHackerEventHandler(
+  req: Request<DeleteHackerEventInput["params"]>,
+  res: Response
+) {
+  const hackerEventId = req.params.id;
+
+  const hackerEvent = await findHackerEvent(hackerEventId);
 
   if (!hackerEvent) {
-    throw new Error("Hacker event is not found");
+    return res.sendStatus(404);
   }
-  return await hackerEvent.destroy();
+
+  await deleteHackerEvent(Number(hackerEventId));
+
+  return res.sendStatus(200);
 }
