@@ -279,7 +279,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"Hack42\",\n    \"city\": \"Arnhem\"\n}",
+							"raw": "{\n    \"name\": \"Hack42\",\n    \"city\": \"Arnhem\"\n,\n    \"province\": \"Gelderland\"\n,\n    \"website\": \"http://hack42.nl\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -338,7 +338,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"Hack42Updated\",\n    \"city\": \"ArnhemUpdated\"\n}",
+							"raw": "{\n    \"name\": \"Hack42\",\n    \"city\": \"Arnhem\"\n,\n    \"province\": \"Gelderland\"\n,\n    \"website\": \"http://hack42.nl\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -399,7 +399,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"title\": \"A post title\",\n    \"body\": \"Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text\"\n}",
+							"raw": "",
 							"options": {
 								"raw": {
 									"language": "json"
