@@ -1,7 +1,16 @@
-import { Model, Column, DataType, ForeignKey } from "sequelize-typescript";
+import {
+  Model,
+  Column,
+  DataType,
+  ForeignKey,
+  Table,
+} from "sequelize-typescript";
 import { Organizer } from "./organizer.model";
 import { HackerEvent } from "./hackerEvent.model";
 
+@Table({
+  tableName: HackerEventOrganizer.HACKEREVENT_ORGANIZER_TABLE_NAME,
+})
 export class HackerEventOrganizer extends Model {
   public static HACKEREVENT_ORGANIZER_TABLE_NAME =
     "hackerEventOrganizers" as string;

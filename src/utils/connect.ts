@@ -2,9 +2,11 @@ import { Sequelize } from "sequelize-typescript";
 import config from "config";
 import logger from "./logger";
 import { Hackerspace } from "../models/hackerspace.model";
-import { Event } from "../models/event.model";
 import { User } from "../models/user.model";
 import { Session } from "../models/session.model";
+import { HackerEvent } from "../models/hackerEvent.model";
+import { Organizer } from "../models/organizer.model";
+import { HackerEventOrganizer } from "../models/hackerEventOrganizer.model";
 
 async function connect() {
   const sequelize = new Sequelize({
@@ -14,7 +16,14 @@ async function connect() {
     username: config.get<string>("postgresUser"),
     password: config.get<string>("postgresPassword"),
     dialect: "postgres",
-    models: [Hackerspace, Event, User, Session],
+    models: [
+      Hackerspace,
+      User,
+      Session,
+      Organizer,
+      HackerEvent,
+      HackerEventOrganizer,
+    ],
   });
 
   await sequelize

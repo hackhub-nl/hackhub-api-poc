@@ -3,9 +3,11 @@ import { app } from "../app";
 import { Sequelize } from "sequelize-typescript";
 import config from "config";
 import { Hackerspace } from "../models/hackerspace.model";
-import { Event } from "../models/event.model";
 import { User } from "../models/user.model";
 import { Session } from "../models/session.model";
+import { HackerEvent } from "../models/hackerEvent.model";
+import { Organizer } from "../models/organizer.model";
+import { HackerEventOrganizer } from "../models/hackerEventOrganizer.model";
 import logger from "../utils/logger";
 import { createHackerspace } from "../service/hackerspace.service";
 import { signJwt } from "../utils/jwt.utils";
@@ -35,7 +37,14 @@ describe("hackerspace", () => {
       username: config.get<string>("postgresUser"),
       password: config.get<string>("postgresPassword"),
       dialect: "postgres",
-      models: [Hackerspace, Event, User, Session],
+      models: [
+        Hackerspace,
+        User,
+        Session,
+        Organizer,
+        HackerEvent,
+        HackerEventOrganizer,
+      ],
     });
 
     //await mockedSequelize.sync({ force: true });
