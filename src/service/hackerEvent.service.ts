@@ -15,7 +15,7 @@ export async function getAllHackerEvents() {
   }
 }
 
-export async function findHackerEvents(hackerEventId: string) {
+export async function findHackerEvent(hackerEventId: string) {
   try {
     const hackerEvent = await HackerEvent.findOne({
       where: {
