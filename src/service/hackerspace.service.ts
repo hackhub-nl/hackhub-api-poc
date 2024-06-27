@@ -1,4 +1,3 @@
-import { omit } from "lodash";
 import { Hackerspace } from "../models/hackerspace.model";
 
 export async function getAllHackerspaces() {
@@ -48,6 +47,7 @@ export async function createHackerspace(
     province: province,
     website: website,
   });
+  
   return JSON.parse(JSON.stringify(hspace));
 }
 

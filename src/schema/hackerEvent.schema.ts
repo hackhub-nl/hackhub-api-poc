@@ -13,29 +13,29 @@ const payload = {
 const params = {
   params: object({
     id: string({
-      required_error: "Hackerevent id is required",
+      required_error: "HackerEvent id is required",
     }),
   }),
 };
 
-export const getHackereventSchema = object({
+export const getHackerEventSchema = object({
   ...params,
 });
 
-export const createHackereventSchema = object({
+export const createHackerEventSchema = object({
   ...payload,
 });
 
-export const updateHackereventSchema = object({
+export const updateHackerEventSchema = object({
   ...payload,
   ...params,
 });
 
-export const deleteHackereventSchema = object({
+export const deleteHackerEventSchema = object({
   ...params,
 });
 
-export type GetHackereventInput = TypeOf<typeof getHackereventSchema>;
-export type CreateHackereventInput = TypeOf<typeof createHackereventSchema>;
-export type UpdateHackereventInput = TypeOf<typeof updateHackereventSchema>;
-export type DeleteHackereventInput = TypeOf<typeof deleteHackereventSchema>;
+export type GetHackerEventInput = TypeOf<typeof getHackerEventSchema>;
+export type CreateHackerEventInput = TypeOf<typeof createHackerEventSchema>;
+export type UpdateHackerEventInput = TypeOf<typeof updateHackerEventSchema>;
+export type DeleteHackerEventInput = TypeOf<typeof deleteHackerEventSchema>;
