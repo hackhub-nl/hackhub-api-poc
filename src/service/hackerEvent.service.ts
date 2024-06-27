@@ -31,13 +31,8 @@ export async function findHackerEvent(hackerEventId: string) {
   }
 }
 
-export async function createHackerEvent(
-  hackerEventId: number,
-  name: string,
-  description: string
-) {
+export async function createHackerEvent(name: string, description: string) {
   const hackerEvent = await HackerEvent.create({
-    hackerEventId: hackerEventId,
     name: name,
     description: description,
   });
