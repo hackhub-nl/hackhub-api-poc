@@ -3,11 +3,9 @@ import {
   Table,
   Column,
   DataType,
-  HasMany,
   ForeignKey,
   BelongsTo,
 } from "sequelize-typescript";
-import { Event } from "./event.model";
 import { User } from "./user.model";
 
 @Table({
@@ -61,7 +59,4 @@ export class Hackerspace extends Model {
 
   @BelongsTo(() => User)
   user!: User;
-
-  @HasMany(() => Event, "hackerspaceId")
-  events!: Event[];
 }
