@@ -1,24 +1,56 @@
 # hackhub-api-poc  
 
 ### Requirements
-PostgreSQL installed.    
+Node.js, NPM and PostgreSQL installed.    
 
 ### Instructions:
-Create database in PostgreSQL.     
+- Create `hackhub` database in PostgreSQL.   
+- Replace `.env.example` with `.env` and set values.    
      
-Install dependencies:    
+- Install dependencies:    
 ```
 npm install
 ```            
-      
-Replace ```.env.example``` with ```.env``` and set values.         
-        
-Start the server: 
+- Start the server: 
 ```
 npm run dev
 ```          
-          
-Run all tests:    
+- Run all tests:    
 ```
 npm test
 ```  
+    
+### ER Diagram:
+```mermaid
+erDiagram
+    USER ||--o{ SESSIONS : logs_in
+    USER ||--o{ HACKER-SPACES : creates
+    USER {
+        string email
+        string name
+        string password
+    }
+    SESSIONS
+    SESSIONS {
+        boolean valid
+        string userAgent
+    }
+    HACKER-EVENTS-ORGANIZERS {}
+    HACKER-EVENTS ||--o{ HACKER-EVENTS-ORGANIZERS : has_organizers 
+    HACKER-EVENTS {
+        string name
+        string description
+    }
+    HACKER-SPACES ||--o{ HACKER-EVENTS : hosts 
+    HACKER-SPACES {
+        string name
+        string city
+        string province
+        string website
+    }
+    ORGANIZERS ||--o{ HACKER-EVENTS-ORGANIZERS : organizes
+    ORGANIZERS {
+        string name
+        string description
+    }
+```
