@@ -80,7 +80,4 @@ export class User extends Model {
 
   @HasMany(() => Session, "userId")
   sessions!: Session[];
-
-  @HasMany(() => Hackerspace, "userId")
-  hackerspaces!: Hackerspace[];
 }

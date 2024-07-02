@@ -56,7 +56,4 @@ export class Hackerspace extends Model {
     type: DataType.INTEGER,
   })
   userId!: number;
-
-  @BelongsTo(() => User)
-  user!: User;
 }
