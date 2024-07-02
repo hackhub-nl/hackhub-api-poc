@@ -5,7 +5,7 @@ Node.js, NPM and PostgreSQL installed.
 
 ### Instructions:
 - Create `hackhub` database in PostgreSQL.   
-- Replace `.env.example` with `.env` and set values.    
+- Rename `.env.example` to `.env` and set values.    
      
 - Install dependencies:    
 ```
@@ -23,8 +23,7 @@ npm test
 ### ER Diagram:
 ```mermaid
 erDiagram
-    USER ||--o{ SESSIONS : logs_in
-    USER ||--o{ HACKER-SPACES : creates
+    USER ||--o{ SESSIONS : logs-in
     USER {
         string email
         string name
@@ -36,7 +35,7 @@ erDiagram
         string userAgent
     }
     HACKER-EVENTS-ORGANIZERS {}
-    HACKER-EVENTS ||--o{ HACKER-EVENTS-ORGANIZERS : has_organizers 
+    HACKER-EVENTS ||--o{ HACKER-EVENTS-ORGANIZERS : has-organizers 
     HACKER-EVENTS {
         string name
         string description
