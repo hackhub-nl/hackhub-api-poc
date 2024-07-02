@@ -7,7 +7,7 @@ describe("organizer", () => {
       it("should return a 404", async () => {
         const id = "222";
 
-        await supertest(app).get(`/api/organizers/${id}`).expect(404);
+        await supertest(app).get(`/api/admin/organizers/${id}`).expect(404);
       });
     });
   });
@@ -15,7 +15,7 @@ describe("organizer", () => {
   describe("create organizer route", () => {
     describe("given the user is not logged in", () => {
       it("should return a 403", async () => {
-        const { statusCode } = await supertest(app).post("/api/organizers");
+        const { statusCode } = await supertest(app).post("/api/admin/organizers");
 
         expect(statusCode).toBe(403);
       });

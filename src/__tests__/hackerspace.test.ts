@@ -26,7 +26,7 @@ const hackerspacePayload = {
   city: "City2",
 };
 
-describe("hackerspace", () => {
+describe("hackerSpace", () => {
   let mockedSequelize: Sequelize;
 
   beforeEach(async () => {
@@ -74,12 +74,12 @@ describe("hackerspace", () => {
     await mockedSequelize.close();
   });
 
-  describe("get hackerspace route", () => {
-    describe("given the hackerspace does not exist", () => {
+  describe("get hackerSpace route", () => {
+    describe("given the hackerSpace does not exist", () => {
       it("should return a 404", async () => {
         const id = "123";
 
-        await supertest(app).get(`/api/hackerspaces/${id}`).expect(404);
+        await supertest(app).get(`/api/admin/hackerspaces/${id}`).expect(404);
       });
     });
 
@@ -98,10 +98,10 @@ describe("hackerspace", () => {
     // });
   });
 
-  describe("create hackerspace route", () => {
+  describe("create hackerSpace route", () => {
     describe("given the user is not logged in", () => {
       it("should return a 403", async () => {
-        const { statusCode } = await supertest(app).post("/api/hackerspaces");
+        const { statusCode } = await supertest(app).post("/api/admin/hackerspaces");
 
         expect(statusCode).toBe(403);
       });

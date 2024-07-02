@@ -35,7 +35,7 @@ describe("user", () => {
           .mockReturnValueOnce(userPayload);
 
         const { statusCode, body } = await supertest(app)
-          .post("/api/users")
+          .post("/api/admin/users")
           .send(userInput);
 
         expect(statusCode).toBe(200);
@@ -58,7 +58,7 @@ describe("user", () => {
           .mockReturnValueOnce(userPayload);
 
         const { statusCode } = await supertest(app)
-          .post("/api/users")
+          .post("/api/admin/users")
           .send({ ...userInput, passwordConfirmation: "does not match" });
 
         expect(statusCode).toBe(400);
@@ -74,7 +74,7 @@ describe("user", () => {
           .mockRejectedValueOnce("rejected!");
 
         const { statusCode } = await supertest(app)
-          .post("/api/users")
+          .post("/api/admin/users")
           .send(userInput);
 
         expect(statusCode).toBe(409);
