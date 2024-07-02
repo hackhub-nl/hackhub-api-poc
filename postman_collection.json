@@ -338,16 +338,16 @@
           "name": "Organizer",
           "item": [
             {
-              "name": "Admin: Get All Organizers Copy",
+              "name": "Admin: Get All Organizers",
               "request": {
                 "method": "GET",
                 "header": [],
-                "url": "{{endpoint}}/api/admin/hackerevents"
+                "url": "{{endpoint}}/api/admin/organizers"
               },
               "response": []
             },
             {
-              "name": "Admin: Get Single Organizer Copy",
+              "name": "Admin: Get Single Organizer",
               "event": [
                 {
                   "listen": "test",
@@ -373,7 +373,7 @@
                     }
                   }
                 },
-                "url": "{{endpoint}}/api/admin/hackerevents/{{id}}"
+                "url": "{{endpoint}}/api/admin/organizers/{{id}}"
               },
               "response": []
             },
@@ -771,7 +771,7 @@
               "request": {
                 "method": "GET",
                 "header": [],
-                "url": "{{endpoint}}/api/hackerevents"
+                "url": "{{endpoint}}/api/organizers"
               },
               "response": []
             },
@@ -802,7 +802,7 @@
                     }
                   }
                 },
-                "url": "{{endpoint}}/api/hackerevents/{{id}}"
+                "url": "{{endpoint}}/api/organizers/{{id}}"
               },
               "response": []
             }
@@ -901,7 +901,7 @@
     },
     {
       "key": "endpoint",
-      "value": "http://localhost:7000"
+      "value": "http://localhost:4000"
     }
   ]
 }
