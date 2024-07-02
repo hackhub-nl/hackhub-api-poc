@@ -81,7 +81,6 @@ function routes(app: express.Application) {
     [requireUser, validateResource(deleteHackerspaceSchema)],
     deleteHackerspaceHandler
   );
-  //
 
   app.get("/api/hackerevents", getAllHackerEventsHandler);
 

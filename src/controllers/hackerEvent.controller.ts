@@ -12,7 +12,6 @@ import {
   GetHackerEventInput,
   UpdateHackerEventInput,
 } from "../schema/hackerEvent.schema";
-import { HackerEvent } from "../models/hackerEvent.model";
 
 export async function getAllHackerEventsHandler(req: Request, res: Response) {
   const hackerEvents = await getAllHackerEvents();
