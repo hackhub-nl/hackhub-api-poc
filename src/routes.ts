@@ -35,6 +35,19 @@ import {
   getHackerEventSchema,
   updateHackerEventSchema,
 } from "./schema/hackerEvent.schema";
+import {
+  createOrganizerHandler,
+  deleteOrganizerHandler,
+  getAllOrganizersHandler,
+  getOrganizerHandler,
+  updateOrganizerHandler,
+} from "./controllers/organizer.cotroler";
+import {
+  createOrganizerSchema,
+  deleteOrganizerSchema,
+  getOrganizerSchema,
+  updateOrganizerSchema,
+} from "./schema/organizer.schema";
 
 // curl http://localhost:port/healthcheck
 
@@ -106,6 +119,32 @@ function routes(app: express.Application) {
     "/api/hackerevents/:id",
     [requireUser, validateResource(deleteHackerEventSchema)],
     deleteHackerEventHandler
+  );
+
+  app.get("/api/organizers", getAllOrganizersHandler);
+
+  app.get(
+    "/api/organizers/:id",
+    validateResource(getOrganizerSchema),
+    getOrganizerHandler
+  );
+
+  app.post(
+    "/api/organizers",
+    [requireUser, validateResource(createOrganizerSchema)],
+    createOrganizerHandler
+  );
+
+  app.put(
+    "/api/organizers/:id",
+    [requireUser, validateResource(updateOrganizerSchema)],
+    updateOrganizerHandler
+  );
+
+  app.delete(
+    "/api/organizers/:id",
+    [requireUser, validateResource(deleteOrganizerSchema)],
+    deleteOrganizerHandler
   );
 }
 
