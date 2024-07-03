@@ -1,42 +1,15 @@
-# hackhub-api-poc  
-
-### Requirements
-Node.js, NPM and PostgreSQL installed.    
-
-### Instructions:
-- Create `hackhub` database in PostgreSQL.   
-- Rename `.env.example` to `.env` and set values.    
-     
-- Install dependencies:    
-```
-npm install
-```            
-- Start the server: 
-```
-npm run dev
-```          
-- Run all tests:    
-```
-npm test
-```  
+# hackhub.nl API   
     
-### ER Diagram:
+> Events driven hackerspace communities in the Netherlands.   
+         
+REST API Proof of Concept for hackhub.nl in Node.js/TypeScript.     
+
+> [!NOTE]
+> Under construction - development only.            
+   
+## ER Diagram:
 ```mermaid
 erDiagram
-    USER ||--o{ SESSIONS : logs-in
-    USER {
-        number id
-        string email
-        string name
-        string password
-    }
-    SESSIONS
-    SESSIONS {
-        number id
-        boolean valid
-        string userAgent
-        number userId
-    }
     HACKER-EVENTS-ORGANIZERS {
         number id
         number hackerEventId
@@ -63,4 +36,47 @@ erDiagram
         string name
         string description
     }
+    USER ||--o{ SESSIONS : logs-in
+    USER {
+        number id
+        string email
+        string name
+        string password
+    }
+    SESSIONS
+    SESSIONS {
+        number id
+        boolean valid
+        string userAgent
+        number userId
+    }
 ```
+
+## Requirements
+Node.js, NPM and PostgreSQL installed.    
+
+## Instructions:
+Create `hackhub` database in PostgreSQL.   
+    
+Copy `.env.example` into `.env` and set values.    
+            
+Install dependencies:    
+```
+npm install
+```    
+           
+Start the server: 
+```
+npm run dev
+```    
+             
+Run all tests:    
+```
+npm test
+```    
+        
+## Test the API    
+For testing with Postman import [postman_collection.json](./postman_collection.json)    
+   
+## License:   
+[MIT](./LICENSE)   
