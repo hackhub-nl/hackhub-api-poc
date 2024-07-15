@@ -64,10 +64,20 @@ Install dependencies:
 ```
 npm install
 ```    
-           
+
 Start the server: 
 ```
+npm start
+```    
+           
+Start the server only for development: 
+```
 npm run dev
+```    
+    
+Start the server only for build: 
+```
+npm run build
 ```    
              
 Run all tests:    
