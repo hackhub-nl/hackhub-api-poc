@@ -6,7 +6,7 @@
   "author": "ivanab",
   "license": "MIT",
   "scripts": {
-    "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
+    "dev": "ts-node-dev --poll src/server.ts",
     "build": "rimraf ./dist && tsc",
     "start": "npm run build && node dist/src/server.js",
     "test": "jest"
