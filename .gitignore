@@ -1,5 +1,6 @@
 # JS output
-build/
+dist/
+config/*/*.js
 
 # Logs
 logs
