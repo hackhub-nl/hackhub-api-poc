@@ -1,0 +1,8 @@
+services:
+  hackhub-api-poc:
+    container_name: hackhub-api-poc
+    build: 
+      context: . 
+      target: production
+    ports: 
+      - 7000:7000
