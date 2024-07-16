@@ -70,12 +70,12 @@ Start the server:
 npm start
 ```    
            
-Start the server only for development: 
+If you only want to run the server for development: 
 ```
 npm run dev
 ```    
     
-Start the server only for build: 
+If you only want to build the server: 
 ```
 npm run build
 ```    
