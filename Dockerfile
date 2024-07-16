@@ -23,4 +23,4 @@ RUN npm ci --only=production
 
 COPY --from=development /usr/src/app/dist ./dist
 
-CMD ["node", "dist/server.js"]
+CMD ["node", "dist/src/server.js"]
