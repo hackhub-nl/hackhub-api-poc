@@ -1,26 +1,26 @@
-FROM node:20-alpine as development
+# Use the official Node.js image as the base image
+FROM node:20-alpine
 
+# Create and set the working directory
 WORKDIR /usr/src/app
 
+# Copy package.json and package-lock.json
 COPY package*.json .
 
+# Install dependencies
 RUN npm install
 
-COPY . . 
+# Copy the rest of the application code
+COPY . .
 
+# Install TypeScript globally
+RUN npm install -g typescript ts-node
+
+# Build the TypeScript code
 RUN npm run build
 
-FROM node:20-alpine as production
+# Expose the application port
+EXPOSE 7000
 
-ARG NODE_ENV=production
-ENV NODE_ENV=${NODE_ENV}
-
-WORKDIR /usr/src/app 
-
-COPY package*.json .
-
-RUN npm ci --only=production
-
-COPY --from=development /usr/src/app/dist ./dist
-
+# Start the application
 CMD ["node", "dist/src/server.js"]
