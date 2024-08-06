@@ -1,8 +1,54 @@
 services:
   hackhub-api-poc:
-    container_name: hackhub-api-poc
-    build: 
-      context: . 
-      target: production
-    ports: 
-      - 7000:7000
+    build: .
+    volumes:
+      - ./:/usr/src/app
+      - /usr/src/app/node_modules    
+    ports:
+      - "7000:7000"
+    environment:
+      - NODE_ENV=production
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+      - DB_NAME=hackhub
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:latest
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=hackhub
+    ports:
+      - "5432:5432"
+    networks: 
+      - mynetwork
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4
+    env_file:
+      - .env
+    environment: 
+      - PGADMIN_DEFAULT_EMAIL=${PGADMIN_DEFAULT_EMAIL}
+      - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_DEFAULT_PASSWORD}
+    networks:
+      - mynetwork
+    tty: true
+    ports:
+      - "5050:80"
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    depends_on:
+      - postgres
+
+networks:
+  mynetwork:
+
+volumes:
+  postgres_data:
+  pgadmin_data:
