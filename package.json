@@ -6,9 +6,9 @@
   "author": "ivanab",
   "license": "MIT",
   "scripts": {
-    "dev": "ts-node-dev --poll src/server.ts",
+    "dev": "npx ts-node-dev --respawn --transpile-only src/server.ts",
     "build": "rm -rf ./dist && tsc",
-    "start": "npm run build && node dist/src/server.js",
+    "start": "npm run build && npx ts-node dist/src/server.js",
     "test": "jest"
   },
   "dependencies": {
@@ -51,6 +51,7 @@
     "sequelize-typescript": "^2.1.6",
     "supertest": "^6.3.4",
     "ts-jest": "^29.1.5",
+    "ts-node": "^10.9.2",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.5.3"
   }
