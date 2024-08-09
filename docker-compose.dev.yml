@@ -6,23 +6,17 @@ services:
       - /usr/src/app/node_modules
     ports:
       - "7000:7000"
-    environment:
-      - NODE_ENV=development
-      - DB_HOST=postgres
-      - DB_PORT=5432
-      - DB_USER=postgres
-      - DB_PASSWORD=postgres
-      - DB_NAME=hackhub
+    env_file:
+      - .env
     command: npm run dev
     depends_on:
       - postgres
 
   postgres:
     image: postgres:latest
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=hackhub
+    container_name: postgres
+    env_file:
+      - .env
     ports:
       - "5432:5432"
     networks:
@@ -35,6 +29,9 @@ services:
     env_file:
       - .env
     environment: 
+      - PGADMIN_LISTEN_PORT=80
+      - PGADMIN_CONFIG_SERVER_MODE=False
+      - PGADMIN_CONFIG_MASTER_PASSWORD_REQUIRED=False
       - PGADMIN_DEFAULT_EMAIL=${PGADMIN_DEFAULT_EMAIL}
       - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_DEFAULT_PASSWORD}
     networks:
