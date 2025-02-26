@@ -50,7 +50,7 @@ erDiagram
 ```
 ## Instructions:    
     
-Copy `.env.example` into `.env` and set values.     
+Copy `.env.example` into `.env` and generate keys.     
     
 Start app, db and pgAdmin in Docker: `docker-compose up`     
     
@@ -59,9 +59,10 @@ Configure database in pgAdmin4:
 - Create new server: `postgres`                
 - Create db: `hackhub`      
     
-Admin routes: `http://localhost:7000/api/admin/...`    
-Visitor routes: `http://localhost:7000/api/...`     
-Routes documentation: [postman_collection.json](./postman_collection.json)    
+## Routes and requests:   
+- Admin routes: `http://localhost:7000/api/admin/...`    
+- Visitor routes: `http://localhost:7000/api/...`     
+- Routes documentation (import Postman collection): [postman_collection.json](./postman_collection.json)    
    
 ## License:   
 [MIT](./LICENSE)   
