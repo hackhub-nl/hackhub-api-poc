@@ -5,7 +5,7 @@ REST API Proof of Concept for hackhub.nl in Node.js/TypeScript.
 ## Instructions:    
 
 ### 1. Postman setup:    
-- Add environment (give it a name) to Postman (top right corner).   
+- Add environment (give it a name) in Postman (top right corner).   
 - Import Postman collection: [postman_collection.json](./postman_collection.json).      
     
 ### 2. Project setup:    
