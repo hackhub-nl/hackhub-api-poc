@@ -1,23 +1,21 @@
 # hackhub.nl API   
-    
-> Events driven hackerspace communities in the Netherlands.   
-         
+            
 REST API Proof of Concept for hackhub.nl in Node.js/TypeScript.     
              
 ## Instructions:    
 
-1. Postman setup:    
+### 1. Postman setup:    
 - Add environment (give it a name) to Postman (top right corner).   
 - Import Postman collection: [postman_collection.json](./postman_collection.json).      
     
-2. Project setup:    
+### 2. Project setup:    
 - Copy `.env.example` into `.env`.      
 - Generate public and private keys and set in `.env` file.     
     
-3. Start Docker:    
+### 3. Start Docker:    
 - Start app and pgAdmin in Docker: `docker-compose up`        
            
-4. Database setup - configure database in pgAdmin4:             
+### 4. Database setup (configure database in pgAdmin4):             
 - Navigate to: `localhost:5050`       
 - Create new server: `postgres`                
 - Set the server parameters:     
@@ -30,13 +28,9 @@ POSTGRES_DB=hackhub
 ```   
 - Create db: `hackhub`      
 
-5. Restart Docker to create the database:    
+### 5. Restart Docker to create the database:    
 `docker-compose up`     
-    
-## Routes and requests:   
-- Admin routes: `http://localhost:7000/api/admin/...`    
-- Visitor routes: `http://localhost:7000/api/...`     
-         
+            
 ## ER Diagram:
 ```mermaid
 erDiagram
@@ -80,7 +74,11 @@ erDiagram
         string userAgent
         number userId
     }     
-```
+```   
    
+## Routes and requests:   
+- Admin routes: `http://localhost:7000/api/admin/...`    
+- Visitor routes: `http://localhost:7000/api/...`        
+
 ## License:   
 [MIT](./LICENSE)   
